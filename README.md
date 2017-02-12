@@ -4,8 +4,9 @@ Pour éditer ton site [clique ici](https://github.com/graphismatique/mfp/edit/ma
 
 ### La syntax Markdown
 
-```markdown
+```
 Un bloque de texte contenant des caractères spécieaux qui pourraient créer des erreurs de code HTML
+```
 
 # Header 1
 ## Header 2
