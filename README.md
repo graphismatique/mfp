@@ -1,15 +1,11 @@
-## Welcome to GitHub Pages
+## Voici ton site mon amour :)
 
-You can use the [editor on GitHub](https://github.com/graphismatique/mfp/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Pour éditer ton site [clique ici](https://github.com/graphismatique/mfp/edit/master/README.md) c'est en Markdown. C'est très cool le Markdown.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### La syntax Markdown
 
 ```markdown
-Syntax highlighted code block
+Un bloque de texte contenant des caractères spécieaux qui pourraient créer des erreurs de code HTML
 
 # Header 1
 ## Header 2
@@ -26,12 +22,4 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/graphismatique/mfp/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Plus de détails [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
