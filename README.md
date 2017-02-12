@@ -8,12 +8,13 @@ Pour éditer ton site [clique ici](https://github.com/graphismatique/mfp/edit/ma
 Un bloque de texte contenant des caractères spécieaux qui pourraient créer des erreurs de code HTML
 ```
 
-# Header 1  
-## Header 2  
+# Header 1
+
+## Header 2
+
 ### Header 3
 
 - Bulleted
-- List
 
 1. Numbered
 2. List
@@ -21,6 +22,5 @@ Un bloque de texte contenant des caractères spécieaux qui pourraient créer de
 **Bold** and _Italic_ and `Code` text
 
 [Link](url) and ![Image](src)
-```
 
 Plus de détails [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
