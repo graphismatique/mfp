@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            color: #642e48;
+            margin-top: 20px;
+            line-height: auto;
+            }
+
+        h2 {
+            text-align: center;
+            line-height:30px; 
+            font-size: 30px;
+            
+            }
+        .purple{color: #642e48;}
+
+            
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #555555;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #dbe1e8;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            
+        }
+        a {
+            color: #642e48;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#f4efea" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f4efea;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+           Geneviève Racette | UN NOUVEAU EP
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="https://lh3.googleusercontent.com/gAPmkl-3iXP9nFRfuuj8GzfvUWW7LhsFKzIzIVVQowtfWSlLqjepIAATuBoL7uaHw6EgyJFDV1MaBGHrv6t1M4qXRbU4Uu_JFUgC4oWCiCZIzJj14nLOd4CGmgOA1p8SQMzsSQ_sCEQvN9sz7CZK7uF6Y9IOHXhG1geup4id0rkhUmazeJChnDoyVVw-UlipIrBCgwcD88b9_nrDRE0EjByB1TvXTy5nvz2aX7HjmZTudhlQYxGxldkdOw95JiaDk1LYrIsnoMhzgBztLmUvr7pYAnnrxrnG26nSWCdVg6vImodIgg3yhepl5aHy4kMmQVudDSxXarrOgnQb-LtCXWgmcj7h4Ya3GfJfb56RWpnheCQtJH1eSDuYFrSfXjeKDzjXPZkHg8ad3ZY2H355qbg8BlEvlujxWGA8KsoBxIsLfnL0d8mjNdrCmYoqVzmLdSZfyIMHY2xrOYb7f1lbHEZLL5jjQPNdlO6vhoukMjByDjJmX6KofWiW3AhbiBNSKckc_DQZQbw4cBd6quY3y1hP0-pRd8Nqy0EuJRsJHmNSmOo_LU1rviS3NTuJxw=w960-h940" width="600" height="" alt="header banner" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: justify; padding: 30px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">
+                                    <h1><i>Geneviève Racette</i></h1>
+                                   <h2><small>UN NOUVEAU EP</small><br> <i class="purple">covers</i></h2>
+                                    
+                                    <hr>
+                                    <p>Montréal, le 6 octobre - Après avoir sillonné les routes du Québec cet été en tant que découverte du ROSEQ, <b>Geneviève Racette </b>s’apprête à lancer « <b>Covers </b>», un premier <b>EP numérique </b>anglophone. Geneviève que l’on a pu notamment découvrir en 2016 avec son premier album <b>Les aurores boréales</b>, chaleureusement accueilli par la critique. Avec « Covers », Geneviève se fait plaisir ! C’est avec son pop-folk et sa voix enveloppante que l’auteure-compositrice-interprète reprend <b>4 titres anglophones </b>qui ont marqué son adolescence. C’est un retour aux sources nécessaire pour Geneviève, qui à travers les étapes et épreuves à l’aube de la trentaine, a senti l’appel de faire revivre des pièces qui ont marqué une période significative de sa vie. </p>
+                                    <p class="purple" style="text-align: center; font-weight:bold;"><i>I Can't Make You Love Me</i> - Bonnie Raitt<br>
+                                    <i>Come as You Are</i> - Nirvana<br>
+                                    <i>Boy from the North Country</i> - Bob Dylan <br>
+                                    <i>Something</i> - The Beatles </p>
+                                    <p>Rappelons qu’au printemps dernier, Geneviève a été choisie parmi plus de cent cinquante candidats pour participer à une résidence artistique de 12 jours au prestigieux Banff Centre. Pendant son séjour en Alberta, elle a travaillé avec des grands auteurs-compositeurs-interprètes basés à Nashville (Don Henry, Matraca Berg, Kevin Welch, Fats Kaplin). Elle a aussi travaillé en studio avec le réputé Howard Bilerman (Arcade Fire). </p>
+
+                                    <hr>
+                                    
+                                    <h3 style="text-align: center;"><span class="purple">En spectacle le 25 octobre</span><br>
+                                    <small>Au Gesù – Formule 5 à 7</small>
+                                    </h3>
+                                    
+                                    <h4 style="text-align: center;">Informations et rsvp : <a href="mailto:promo@r-management.ca">promo@r-management.ca</a></h4>
+                                    <p>Geneviève fera également la première partie des spectacles de Valérie Carpentier.</p>
+                                    
+                                    <hr>
+
+                                    
+
+                                    <p> 
+                                        18 oct. 2017 - Brossard - Le Club Dix30 *
+                                        <br>
+                                        20 oct. 2017 - Maskinongé - Magasin général Le Brun *
+                                        <br>
+                                        25 oct. 2017 - Montréal - L'église le Gesû / 5 @ 7 Événement spécial
+                                        <br>
+                                        28 oct. 2017 - Lavaltrie  - Café culturel la Chasse-galerie *
+                                        <br>
+                                        8 nov. 2017 - L'Avenir - Maison de la culture / Première partie de François Lachance
+                                        <br>
+                                        23 nov. 2017 - Waterloo - Maison de la Culture *
+                                        <br>
+                                        1<sup>er</sup> déc. 2017 - Québec - Centre d'art La Chapelle *
+                                        <br>
+                                        12 jan. 2018 - Québec - Centre d'art La Chapelle *
+                                        <br>
+                                        02 fév. 2018 - Lachine - L'entrepôt *
+                                        <br>
+                                        19 fév. 2018 - Toronto - Burdock / Plateau double avec Danielle Knibbe
+                                        <br>
+                                        03 mar. 2018 - Montréal - La nuit blanche
+                                        <br>
+                                        11 mar. 2018 - Montréal - Casa del Popolo - Plateau double avec Danielle Knibbe
+                                        <br>
+                                        <i>* Premitre partie de Valérie Carpentier</i>
+                                    </p>
+                                    
+                                    <hr>   
+                                    <p style="text-align: center;"> <b>Come As You Are (Cover) </b>
+                                     <br><small> <i> Vidéo: DTO Films</i></small> </p>
+                                     <iframe width="520" height="293"  src="https://www.youtube.com/embed/jgcRZSFiwVY?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                                    
+                                    
+                                        <hr>
+                                        
+                                        <p style="text-align: center;"> 
+                                                <b>Gérance et spectacles : </b><br>
+                                                R-Management | <b>Guy Ritchot</b><br>
+                                                514.962.1351 | <a href="mailto:guy@r-management.ca">guy@r-management.ca</a>
+                                        </p>
+                                        <hr>
+                                        <p style="text-align: center;"> 
+                                                <b>Promotion et relations de presse :</b><br>
+                                                R-Management | <b>Marie-France Privée</b><br>
+                                                514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                        </p>
+    
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Image Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="https://lh3.googleusercontent.com/QzoGzH6bUScipEupfOP82c9BauKQ5n6OVPDdBBUpMgDcGlUaSg_9L-aZq0bWgQYSm-lVUpvIyd1rV24CsiqwspHWQxtuEd6gwVQ1XmbsGdcFS0KgKsabnaOTIb9g2mFzV8ZPnkN1W4uMex52ASyg_sRccgrseGrkcAGmI2GJStRaLuU_gZbXxY3u_DoB4pISegu2B1UxkPbGpiLd4hZ2aHGZNNdxfMnuK4IIZEJLNRy3ihPTomlbJJAzgP233hR6KrUy41L169UNn6iNPvDaa_8kaYoHIiX57tyLhHgjEe3S-HVShAJhyC_QCZ6ydit7kVyOVkllClHgGm-UbljfhqZA-fYaTwJ8iOjErK11MYGxOYofCPDkvQbsQyZODLPGJ9q80miWxf3GrunxPGw5JhBHPyjTkxUXLwRietcmVSYBLN3mBc1qB-LyjWdZSTTf_gP1jggo0fwg_ZHDMu_LVWqvzBuFVmWgyYM2B1UR8hIM7jPT7eRJen4ENaC9KdkjgyzlXagd2JvlpirDvzJW1VAAaeezocRQ0l6XiJdl3JoLWrIcPPDAtRzHJhgKvQ=w2078-h1552" alt="Logos Footer" border="0" align="center" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Footer : END -->
+
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
