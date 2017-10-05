@@ -21,7 +21,6 @@ html, body {
 .fullScreen {
     height: 100%;
     text-align:center;
-    background-color: grey; 
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -30,7 +29,6 @@ html, body {
 
 .center{
     width: 100%;
-    background-color: darkslateblue;
     background-image: url("back.jpg");
     display: flex;
     justify-content: center;
