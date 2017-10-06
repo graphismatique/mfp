@@ -1,36 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
-    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0 auto !important;padding: 0 !important;height: 100% !important;width: 100% !important;">
+<head style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+    <meta charset="utf-8" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Geneviève Racette présente son EP - Covers</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
 
-    <!-- Web Font / @font-face : BEGIN -->
-	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
-
-    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
-    <!--[if mso]>
-        <style>
-            * {
-                font-family: sans-serif !important;
-            }
-        </style>
-    <![endif]-->
-
-    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
-    <!--[if !mso]><!-->
-        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
-    <!--<![endif]-->
-
-    <!-- Web Font / @font-face : END -->
-
-	<!-- CSS Reset -->
-    <style>
-
-        /* What it does: Remove spaces around the email design added by some email clients. */
-        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+    <style style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
         html,
         body {
             margin: 0 auto !important;
@@ -101,10 +78,6 @@
         .button-link {
             text-decoration: none !important;
         }
-
-        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
-        /* Create one of these media queries for each additional viewport size you'd like to fix */
-        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
         @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
             .email-container {
                 min-width: 375px !important;
@@ -114,7 +87,7 @@
     </style>
 
     <!-- Progressive Enhancements -->
-    <style>
+    <style style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
 
         /* What it does: Hover styles for buttons */
         .button-td,
@@ -163,6 +136,16 @@
             color: #555555;
             line-height: 20px;
 		}
+        
+        p {
+            line-height: 19px;
+		}
+
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+    }
         hr {
 			border: 0;
 			background-color: #dbe1e8;
@@ -183,135 +166,111 @@
         }
     </style>
 </head>
-<body width="100%" bgcolor="#f4efea" style="margin: 0; mso-line-height-rule: exactly;">
-    <center style="width: 100%; background: #f4efea;">
+
+<body width="100%" bgcolor="#f4efea" style="margin: 0 auto !important;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding: 0 !important;height: 100% !important;width: 100% !important;">
+    <center style="width: 100%;background: #f4efea;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+        
         <!-- Visually Hidden Preheader Text : BEGIN -->
-        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
-           Geneviève Racette | UN NOUVEAU EP
+        <div style="display: none;font-size: 1px;line-height: 1px;max-height: 0px;max-width: 0px;opacity: 0;overflow: hidden;mso-hide: all;font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+            Geneviève Racette présente son EP - Covers
         </div>
         <!-- Visually Hidden Preheader Text : END -->
-        <!--
-            Set the email width. Defined in two places:
-            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
-            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
-        -->
-        <div style="max-width: 600px; margin: auto;" class="email-container">
-            <!--[if mso]>
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
-            <tr>
-            <td>
-            <![endif]-->
+        
+        <div style="max-width: 600px;margin: auto;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" class="email-container">
             
             <!-- Online Version : BEGIN  -->
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
-                <tr>
-                    <td style="padding: 20px 0; text-align: center">
-                         <p class="small"><a href="http://mariefranceprivee.com/GenRacette/coverEP.html">Version en ligne</a></p>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+                <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <td style="padding: 20px 0;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+                         <p class="small" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;font-size: 10px;"><a href="http://mariefranceprivee.com/GenRacette/coverEP.html" target="blank" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;">Version en ligne</a></p>
                     </td>
                 </tr>
             </table>
             <!-- Online Version : END -->
 
             <!-- Email Body : BEGIN -->
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
                 
                 <!-- Image Header : BEGIN -->
-                <tr>
-                    <td bgcolor="#ffffff">
-                        <img src="https://lh3.googleusercontent.com/gAPmkl-3iXP9nFRfuuj8GzfvUWW7LhsFKzIzIVVQowtfWSlLqjepIAATuBoL7uaHw6EgyJFDV1MaBGHrv6t1M4qXRbU4Uu_JFUgC4oWCiCZIzJj14nLOd4CGmgOA1p8SQMzsSQ_sCEQvN9sz7CZK7uF6Y9IOHXhG1geup4id0rkhUmazeJChnDoyVVw-UlipIrBCgwcD88b9_nrDRE0EjByB1TvXTy5nvz2aX7HjmZTudhlQYxGxldkdOw95JiaDk1LYrIsnoMhzgBztLmUvr7pYAnnrxrnG26nSWCdVg6vImodIgg3yhepl5aHy4kMmQVudDSxXarrOgnQb-LtCXWgmcj7h4Ya3GfJfb56RWpnheCQtJH1eSDuYFrSfXjeKDzjXPZkHg8ad3ZY2H355qbg8BlEvlujxWGA8KsoBxIsLfnL0d8mjNdrCmYoqVzmLdSZfyIMHY2xrOYb7f1lbHEZLL5jjQPNdlO6vhoukMjByDjJmX6KofWiW3AhbiBNSKckc_DQZQbw4cBd6quY3y1hP0-pRd8Nqy0EuJRsJHmNSmOo_LU1rviS3NTuJxw=w960-h940" width="600" height="" alt="header banner" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <td bgcolor="#ffffff" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+                        <img src="https://lh3.googleusercontent.com/OPgwE0_-KgmfrW73P0NDO8qfWHdxC3xxFs_CaLwpOyppRGJyeIzrlKSsaUz14-og1SxpjT1qKA1fYPGgc4y2PXbkFP_rNDjcBbQUWuJY3-s9bg6eDPOHqcS15IGb-gbjF_vMIz0FlLYWK3Ppd3vmsbuEJP0ha8uVfecqLpN_9j5kBBZ1-A0OrYcoZCes1Gxc87S92pfA1QNgCXWKL47bRytgmXqkXGRfJoYa2yPNqJV_1HsNFRvrKtbfAFThyGY2CEhAYnOmTW2WVl3FbJ1Yw-HlrpBUXywDfz2XhRhgFtESQVbifdXTjO952lVKo86DO1aiPyxPAJi4QUl4RW6pQhUu-hHzYn7el02f9Aut-5BKW3TsHzSjB5tPY9I982K_KgqaGiFkbX1pzE68a3bBYFtPBd3fk6IhRYaDYDyoNFUVVhD1IfjcG33s7N8U9TSIP--WETXIxgWLvlxfq9TFxB-e7sZmlrWOfviXWvdj06ttljA3CLZwpaEWdNGCjkWisPb4hrZaHaM675sDCcVChN3F2gLtt228FvSKffahjiy9Hf0CHxL-yK6Vm75IDg=w960-h940" width="600" height="" alt="header banner" border="0" align="center" style="width: 100%;max-width: 600px;height: auto;background: #dddddd;font-family: sans-serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;" class="g-img">
                     </td>
                 </tr>
                 <!-- Image Header : END -->
 
                 <!-- Main Text on 1 Column : BEGIN -->
-                <tr>
-                    <td bgcolor="#ffffff">
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tr>
-                                <td style="text-align: justify; padding: 30px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">
-                                    <h1><i>Geneviève Racette</i></h1>
-                                   <h2><small>UN NOUVEAU EP</small><br> <i class="purple">covers</i></h2>
+                <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <td bgcolor="#ffffff" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+                            <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                <td style="text-align: justify;padding: 30px 40px;font-family: serif;font-size: 15px;line-height: 20px;color: #555555;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+                                    <h1 style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;text-align: center;font-size: 40px;color: #642e48;margin-top: 20px;line-height: auto;"><i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Geneviève Racette</i></h1>
+                                    <h2 style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;text-align: center;line-height: 30px;font-size: 30px;"><small style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">UN NOUVEAU EP</small><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> <i class="purple" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;">covers</i></h2>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
                                     
-                                    <hr>
-                                    <p>Montréal, le 6 octobre - Après avoir sillonné les routes du Québec cet été en tant que découverte du ROSEQ, <b>Geneviève Racette </b>s’apprête à lancer « <b>Covers </b>», un premier <b>EP numérique </b>anglophone. Geneviève que l’on a pu notamment découvrir en 2016 avec son premier album <b>Les aurores boréales</b>, chaleureusement accueilli par la critique. Avec « Covers », Geneviève se fait plaisir ! C’est avec son pop-folk et sa voix enveloppante que l’auteure-compositrice-interprète reprend <b>4 titres anglophones </b>qui ont marqué son adolescence. C’est un retour aux sources nécessaire pour Geneviève, qui à travers les étapes et épreuves à l’aube de la trentaine, a senti l’appel de faire revivre des pièces qui ont marqué une période significative de sa vie. </p>
-                                    <p class="purple" style="text-align: center; font-weight:bold;"><i>I Can't Make You Love Me</i> - Bonnie Raitt<br>
-                                    <i>Come as You Are</i> - Nirvana<br>
-                                    <i>Boy from the North Country</i> - Bob Dylan <br>
-                                    <i>Something</i> - The Beatles </p>
-                                    <p>Rappelons qu’au printemps dernier, Geneviève a été choisie parmi plus de cent cinquante candidats pour participer à une résidence artistique de 12 jours au prestigieux Banff Centre. Pendant son séjour en Alberta, elle a travaillé avec des grands auteurs-compositeurs-interprètes basés à Nashville (Don Henry, Matraca Berg, Kevin Welch, Fats Kaplin). Elle a aussi travaillé en studio avec le réputé Howard Bilerman (Arcade Fire). </p>
-
-                                    <hr>
+                                    <p style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;">Montréal, le 6 octobre - Après avoir sillonné les routes du Québec cet été en tant que découverte du ROSEQ, <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Geneviève Racette </b>s’apprête à lancer « <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Covers </b>», un premier <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">EP numérique </b>anglophone. Geneviève que l’on a pu notamment découvrir en 2016 avec son premier album <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Les aurores boréales</b>, chaleureusement accueilli par la critique. Avec « Covers », Geneviève se fait plaisir ! C’est avec son pop-folk et sa voix enveloppante que l’auteure-compositrice-interprète reprend <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">4 titres anglophones </b>qui ont marqué son adolescence. C’est un retour aux sources nécessaire pour Geneviève, qui à travers les étapes et épreuves à l’aube de la trentaine, a senti l’appel de faire revivre des pièces qui ont marqué une période significative de sa vie. </p>
+                                    <p class="purple" style="text-align: center;font-weight: bold;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;color: #642e48;"><i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">I Can't Make You Love Me</i> - Bonnie Raitt<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Come as You Are</i> - Nirvana<br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Boy from the North Country</i> - Bob Dylan <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Something</i> - The Beatles </p>
+                                    <p style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;">Rappelons qu’au printemps dernier, Geneviève a été choisie parmi plus de cent cinquante candidats pour participer à une résidence artistique de 12 jours au prestigieux Banff Centre. Pendant son séjour en Alberta, elle a travaillé avec des grands auteurs-compositeurs-interprètes basés à Nashville (Don Henry, Matraca Berg, Kevin Welch, Fats Kaplin). Elle a aussi travaillé en studio avec le réputé Howard Bilerman (Arcade Fire). </p>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
                                     
-                                    <h3 style="text-align: center;"><span class="purple">En spectacle le 25 octobre</span><br>
-                                    <small>Au Gesù – Formule 5 à 7</small>
+                                    <h3 style="text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;width: 100%;font-size: 25px;line-height: 30px;"><span class="purple" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;">En spectacle le 25 octobre</span><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <small style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Au Gesù – Formule 5 à 7 <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">(Espace Aline Letendre) </small>
                                     </h3>
                                     
-                                    <h4 style="text-align: center;">Informations et rsvp : <a href="mailto:promo@r-management.ca">promo@r-management.ca</a></h4>
-                                    <p>Geneviève fera également la première partie des spectacles de Valérie Carpentier.</p>
+                                    <h4 style="text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0px 0px 0px 0px;font-weight: 100;font-size: 20px;color: #555555;line-height: 20px;">Informations et rsvp : <a href="mailto:promo@r-management.ca" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;">promo@r-management.ca</a></h4>
+                                    <p style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;">Geneviève fera également la première partie des spectacles de Valérie Carpentier.</p>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
                                     
-                                    <hr>
-
-                                    
-
-                                    <p> 
+                                    <p style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;"> 
                                         18 oct. 2017 - Brossard - Le Club Dix30 *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         20 oct. 2017 - Maskinongé - Magasin général Le Brun *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         25 oct. 2017 - Montréal - L'église le Gesû / 5 @ 7 Événement spécial
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         28 oct. 2017 - Lavaltrie  - Café culturel la Chasse-galerie *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         8 nov. 2017 - L'Avenir - Maison de la culture / Première partie de François Lachance
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         23 nov. 2017 - Waterloo - Maison de la Culture *
-                                        <br>
-                                        1<sup>er</sup> déc. 2017 - Québec - Centre d'art La Chapelle *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                        1<sup style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;font-size: 0.83em;vertical-align: super;line-height: 0;">er</sup> déc. 2017 - Québec - Centre d'art La Chapelle *
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         12 jan. 2018 - Québec - Centre d'art La Chapelle *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         02 fév. 2018 - Lachine - L'entrepôt *
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         19 fév. 2018 - Toronto - Burdock / Plateau double avec Danielle Knibbe
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         03 mar. 2018 - Montréal - La nuit blanche
-                                        <br>
+                                        <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         11 mar. 2018 - Montréal - Casa del Popolo - Plateau double avec Danielle Knibbe
-                                        <br>
-                                        <i>* Premitre partie de Valérie Carpentier</i>
-                                    </p>
+                                        </p><p style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;"><i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">* Première partie de Valérie Carpentier</i></p>
                                     
-                                    <hr>   
-                                    <p style="text-align: center;"> <b>Come As You Are (Cover) </b>
-                                     <br><small> <i> Vidéo: DTO Films</i></small> </p>
-                                    <a href="http://mariefranceprivee.com/GenRacette/coverEP.html" target="blank"><img src="https://lh3.googleusercontent.com/E3lyEvj3qVTswwiLqrUr8IdSEZEo7lset085eJScor-Pekgicaaa4jSDyVlMG9XRy9uW8q0gk2_PT4SrBHnyBYlwV5EMX8U4UUwaSBknQkxSpktS00jlxkjtiv3xyhVTciUMa-SRziqzu2PazaHhiWZYnyQ9GDN8ihNHk_th4payvSgo0B4Oe5BJ6LVGT4jnkO9xBm8YSlPHyxctrRzhKn_idt1A4JsepuNXNSA0d0oBj5DsQubKU5mObnDrzBJ03Pe9HYHSi6mUMSxiqoDCV8U34rR_Mbnjhq_UWjKY2JcYy-JQ2pdHiiu5UluBJmtW7VBmaoknuR7fETHJ6ieEg9bzgqs_9ji1FuhRyFyLWMT-S06uF4PDcl_AmVXMq90lq56sOHTChWB8J394UKxmzIt95RqcskIyQXYn7qn2MJIId8PM6ECRUk2KHUk5RQnvZ1P2wGE1OpWOMQLYDOcLIKXjSiNg1WkBDWX7QxYJza6BbjBh58_v78qlTgJ2fQ5X_N-k22m7puUGdfSxb_oEqBW6wIc5ksMDwe9S_ZZ06pHtAlxrCTUmqT90mM_A1g=w2078-h1552" alt="header banner" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
+
+                                    <p style="text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;"> <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Come as You Are</b><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><small style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> <i style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> Vidéo: DTO Films</i></small> </p>
                                     
+                                    <a href="http://mariefranceprivee.com/GenRacette/coverEP.html" target="blank" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;"><img src="https://lh3.googleusercontent.com/E3lyEvj3qVTswwiLqrUr8IdSEZEo7lset085eJScor-Pekgicaaa4jSDyVlMG9XRy9uW8q0gk2_PT4SrBHnyBYlwV5EMX8U4UUwaSBknQkxSpktS00jlxkjtiv3xyhVTciUMa-SRziqzu2PazaHhiWZYnyQ9GDN8ihNHk_th4payvSgo0B4Oe5BJ6LVGT4jnkO9xBm8YSlPHyxctrRzhKn_idt1A4JsepuNXNSA0d0oBj5DsQubKU5mObnDrzBJ03Pe9HYHSi6mUMSxiqoDCV8U34rR_Mbnjhq_UWjKY2JcYy-JQ2pdHiiu5UluBJmtW7VBmaoknuR7fETHJ6ieEg9bzgqs_9ji1FuhRyFyLWMT-S06uF4PDcl_AmVXMq90lq56sOHTChWB8J394UKxmzIt95RqcskIyQXYn7qn2MJIId8PM6ECRUk2KHUk5RQnvZ1P2wGE1OpWOMQLYDOcLIKXjSiNg1WkBDWX7QxYJza6BbjBh58_v78qlTgJ2fQ5X_N-k22m7puUGdfSxb_oEqBW6wIc5ksMDwe9S_ZZ06pHtAlxrCTUmqT90mM_A1g=w2078-h1552" alt="Video Come as You Are" border="0" align="center" style="width: 100%;max-width: 600px;height: auto;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;" class="g-img"></a>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
                                     
-                                        <hr>
-                                        
-                                        <p style="text-align: center;"> 
-                                                <b>Gérance et spectacles : </b><br>
-                                                R-Management | <b>Guy Ritchot</b><br>
-                                                514.962.1351 | <a href="mailto:guy@r-management.ca">guy@r-management.ca</a>
-                                        </p>
-                                        <hr>
-                                        <p style="text-align: center;"> 
-                                                <b>Promotion et relations de presse :</b><br>
-                                                R-Management | <b>Marie-France Privée</b><br>
-                                                514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
-                                        </p>
-    
+                                    <p style="text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;"><b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Gérance et spectacles : </b><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">R-Management | <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Guy Ritchot</b><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">514.962.1351 | <a href="mailto:guy@r-management.ca" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;">guy@r-management.ca</a></p>
+                                    <hr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: 0;background-color: #dbe1e8;height: 1px;margin: 5px 0px 10px 0px;">
+                                    <p style="text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;"><b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Promotion et relations de presse :</b><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">R-Management | <b style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Marie-France Privée</b><br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">514-814-7844 | <a href="mailto:marie@mariefranceprivee.com" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;">marie@mariefranceprivee.com</a></p>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
 
-
                 <!-- Image Footer : BEGIN -->
-                <tr>
-                    <td style="padding-top: 20px; text-align:center;">
-                        <img src="https://lh3.googleusercontent.com/QzoGzH6bUScipEupfOP82c9BauKQ5n6OVPDdBBUpMgDcGlUaSg_9L-aZq0bWgQYSm-lVUpvIyd1rV24CsiqwspHWQxtuEd6gwVQ1XmbsGdcFS0KgKsabnaOTIb9g2mFzV8ZPnkN1W4uMex52ASyg_sRccgrseGrkcAGmI2GJStRaLuU_gZbXxY3u_DoB4pISegu2B1UxkPbGpiLd4hZ2aHGZNNdxfMnuK4IIZEJLNRy3ihPTomlbJJAzgP233hR6KrUy41L169UNn6iNPvDaa_8kaYoHIiX57tyLhHgjEe3S-HVShAJhyC_QCZ6ydit7kVyOVkllClHgGm-UbljfhqZA-fYaTwJ8iOjErK11MYGxOYofCPDkvQbsQyZODLPGJ9q80miWxf3GrunxPGw5JhBHPyjTkxUXLwRietcmVSYBLN3mBc1qB-LyjWdZSTTf_gP1jggo0fwg_ZHDMu_LVWqvzBuFVmWgyYM2B1UR8hIM7jPT7eRJen4ENaC9KdkjgyzlXagd2JvlpirDvzJW1VAAaeezocRQ0l6XiJdl3JoLWrIcPPDAtRzHJhgKvQ=w2078-h1552" alt="Logos Footer" border="0" align="center" class="g-img">
+                <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <td style="padding-top: 20px;text-align: center;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;">
+                        <img src="https://lh3.googleusercontent.com/QzoGzH6bUScipEupfOP82c9BauKQ5n6OVPDdBBUpMgDcGlUaSg_9L-aZq0bWgQYSm-lVUpvIyd1rV24CsiqwspHWQxtuEd6gwVQ1XmbsGdcFS0KgKsabnaOTIb9g2mFzV8ZPnkN1W4uMex52ASyg_sRccgrseGrkcAGmI2GJStRaLuU_gZbXxY3u_DoB4pISegu2B1UxkPbGpiLd4hZ2aHGZNNdxfMnuK4IIZEJLNRy3ihPTomlbJJAzgP233hR6KrUy41L169UNn6iNPvDaa_8kaYoHIiX57tyLhHgjEe3S-HVShAJhyC_QCZ6ydit7kVyOVkllClHgGm-UbljfhqZA-fYaTwJ8iOjErK11MYGxOYofCPDkvQbsQyZODLPGJ9q80miWxf3GrunxPGw5JhBHPyjTkxUXLwRietcmVSYBLN3mBc1qB-LyjWdZSTTf_gP1jggo0fwg_ZHDMu_LVWqvzBuFVmWgyYM2B1UR8hIM7jPT7eRJen4ENaC9KdkjgyzlXagd2JvlpirDvzJW1VAAaeezocRQ0l6XiJdl3JoLWrIcPPDAtRzHJhgKvQ=w2078-h1552" alt="Logos Footer" border="0" align="center" class="g-img" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;-ms-interpolation-mode: bicubic;">
                     </td>
                 </tr>
                 <!-- Image Footer : END -->
@@ -320,15 +279,15 @@
             <!-- Email Body : END -->
 
             <!-- Email Footer : BEGIN -->
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
-                <tr>
-                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
-                        <unsubscribe class="desinscrire">
-                            <p class="small">
-                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
-                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-spacing: 0 !important;border-collapse: collapse !important;table-layout: fixed !important;margin: 0 auto !important;">
+                <tr style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px;font-family: sans-serif;line-height: 14px;text-align: center;color: #888888;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;mso-table-lspace: 0pt !important;mso-table-rspace: 0pt !important;border-bottom: 0 !important;cursor: default !important;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border-bottom: 0 !important;cursor: default !important;">
+                            </unsubscribe><p class="small" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;line-height: 19px;font-size: 10px;border-bottom: 0 !important;cursor: default !important;">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border-bottom: 0 !important;cursor: default !important;">
+                           <a href="mailto:marie@mariefranceprivee.com" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #642e48;text-decoration: none;border-bottom: 0 !important;cursor: default !important;">cliquez ici</a> pour vous désabonner.
                            </p>
-                        </unsubscribe>
+                        
                     </td>
                 </tr>
             </table>
