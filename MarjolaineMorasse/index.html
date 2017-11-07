@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+            text-align: justify;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            color: #467881;
+            margin-top: 20px;
+            line-height: auto;
+            }
+
+        h2 {margin: 0px 0px 20px 0px;
+            text-align: center;
+            color: #467881;
+            line-height:normal; 
+            font-size: 30px;
+            font-weight: normal;
+            
+            }
+        .purple{color: #642e48;}
+
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+            
+        }
+        a {
+            color: #467881;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#f2f1ec" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f2f1ec;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            Découvrez le premier extrait de Marjolaine Morasse!
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://www.marjorlainemorasse.com/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="https://lh3.googleusercontent.com/I4R1V8mY8EDSFhLnUfvUejicrBV9cf0-eOj2TOVRpEqctBcyvOc8weJD9Do168QYJT2UnzKxqDkAYKIVw-LM7gHUmjqLyE6-9MvTyjCIGXeMCv2VhU-HbTloZwDoBwMu_07Tj5YdzXH0OEYCBLoVWaLIDK3E_VmrX0hnNMfRydImScLZ1fq_aFLS6tP9lRLIJwYtxIwXeY02pdVYrc4oUM-Kaix4UVF0G0NkgCeERcbZyyQDoo2DxYSAA6eNPAXb7ofds_UbQ4c_yfVTuix9irhNosBbAFNalyoockIMoLFEjYPkRo5eTZ1aWyeijU40foKYVBUqPEmJ3srkLCPGCVNLoGjT8kL3UUb9YeN1oNGw3TpVgmdebhWh_2VrFW3o2YGKwRgnvKm2_t8lvG_IfQOqMC21hhOYJX83cisVWLb8ONo5INCg--e-ZicO7_7hPlqjFWqHu7f8XzEUoJIcwYU2kMeXFy35TSXAfBqwUj1dI2Eixmvbg2uJOTfgTbnbtn9Hfw22irqNxyDfEd7qdq_Tm35Ef79xSs7p9-MkzUtWKWqBp358n0HqhN7LK-s_=w964-h940" alt="Video La Fabrique Culturelle" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">
+                                    
+                                    <h2> <small>Un tout premier extrait</small><br><em><b>Prendre le nord</b></em></h2>
+                                    <audio controls controlsList="nodownload" style="text-align: center;">
+                                        <source src="https://docs.google.com/uc?export=&id=1M2r5Yz72VeMAKjpNv2VmyOkjhKRbsmBT" type="audio/mpeg">
+                                        <a href="http://www.marjorlainemorasse.com/" target="blank">Cliquez ici</a> pour écouter l'extrait.
+                                    </audio>
+                                    <p>Montréal le 7 novembre 2017 - C’est avec fierté et fébrilité que l’auteure-compositrice-interprète <strong>Marjolaine Morasse</strong> dévoile <strong><em>Prendre le Nord</em></strong>. Premier extrait de son tout premier album à paraître à l’hiver 2018, la chanson est une ode au grand air et aux paysages du Nord-du-Québec qui l’a vu grandir.</p>
+                                    <p>Celle qui a enchanté le FRIMAT (Festival de la Relève Indépendante Musicale en Abitibi-Témiscamingue) en juillet dernier trace son chemin musical depuis plusieurs années. Elle présente aujourd’hui une parcelle importante de son parcours : longtemps interprète, elle propose maintenant ses propres chansons. Chansons qui parlent d&#39;amour, de ses tourments et de la beauté qui se cache en chaque petite chose. De ces sentiments humains qui mènent parfois à un &quot;trop plein&quot;, et que la musique permet de libérer.</p>
+                                    <p><strong><em>Prendre le nord</em></strong> introduit délicieusement l’univers réconfort de Marjolaine, un son folk-pop enveloppant. Avec sa poésie, son bagage musical et son audace, Marjolaine pourra définitivement se frayer une belle place dans le paysage musical actuel.</p>
+                                    <p>Marjolaine, voix de miel aux parfums de forêt pour dimanches matins gris qui enveloppe comme une douillette et un bol de café au lait !</p>
+                                    
+                                    <h4>Spectacles</h4>
+                                    <hr>
+                                    <p><strong>7 novembre : Montréal</strong> – Quai des brumes (5 à 7 Abitibi-Témiscamingue) <br>
+                                    <strong>9 novembre : Saint-Isidore</strong> – Bistro Cœur de village<br>
+                                    <strong>12 novembre : Montréal</strong> – Le Blues du Business Man, Coup de cœur francophone <br>
+                                    <strong>19 au 23 novembre</strong> – Résidence artistique au Studio B12<br>
+                                    <strong>23 novembre : Longueuil</strong> – En Vitrine au 300, cabaret musical</p>
+                                    <hr>
+                                    <h4 style="text-align: center;">Marjolaine enchante le 13<sup>e</sup> FRIMAT
+                                     <br><small> <i> <b> La Fabrique culturelle</b></i></small> </h4>
+                                     <p><a href="https://www.lafabriqueculturelle.tv/capsules/10019/marjolaine-morasse-enflamme-le-13e-frimat" target="blank"><img src="https://docs.google.com/uc?export=&id=14cUHYZfTdiuz2Rh-zcMP1-N7DbzMOiB2" alt="header banner" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img"></a></p>
+                                        <hr>
+                                        <h3 style="text-align: center;"> 
+                                            <a href='http://www.marjorlainemorasse.com/' target='_blank' >www.marjorlainemorasse.com</a>
+                                        </h3>
+                                        <hr>
+                                        <p style="text-align: center;"> 
+                                            <b>Relations de presse :</b><br>
+                                            <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                        </p>
+                                        <p style="text-align: center;"> 
+                                            <b>Promotion radio : Torpille</b><br>
+                                            <b>Jean-François Blanchet</b> | 450-787-3141 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
+                                        </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="https://lh3.googleusercontent.com/w6s8sEN9kNWggrIs9yui1uMTHhAYueQvuoFqC5lNEOI5m6OlbYkN-j5PxlwqImPAHC38tO2JUoi1uhAO6dIERJJGOoKHmeNUBlFZziwiZzmsn0cEiLejiY1ipOUQs2UiM5roV_SatCWFAyn7aCM7DpBB6dv-Kzgd34emutOIHP2HF20dbciT2s-lWlxJ26fxO4IyYPny12L3LmJ2TieZNtxZ5ppcBu-Ji3wyh_sjHpfyOE134Py8GQYxz-3wi4_W5CbuzmkzvisVnIvxTF0Lt7Kg7wVPyxArSFzZ8l4B8QYkjETUU8sRKaZKdJBkX3fjkB74ijxip0DUgnD7RWYjemNY5zVOnYuLv0ZLGFq3xQI401F8mGJ86nTUsgDO70DxETwCHWjmqYp8IAojgWQc-4qzi0hk3taZfTPsC1r1Fe5fsmMtn4IzL1yyFd6cppK-zcZx6_KuukuNkL2g2Wc2WL36CGREvLArBgNnigkMx8J9_K6iIW94BoNx35Z5BSOP-AtgjJwk1DXZ-sjykt3nU8sCJIKDrvYBgFmyJbIL62YeCGqWgg71jHml2r7ckDFA=w1000-h956" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
