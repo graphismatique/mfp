@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="audioplayer.js"></script>
+    
+    <!-- The title tag shows in email notifications, like Android 4.4. -->
 
     <!-- Web Font / @font-face : BEGIN -->
 	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
@@ -128,7 +132,6 @@
         }
 
         p {
-            line-height: 18px;
             text-align: justify;
         }
         .center  {
@@ -137,14 +140,17 @@
         h1 {
             text-align: center;
             font-size: normal;
-            color: #467881;
+            color: #c76526;
             margin-top: 20px;
             line-height: normal;
             }
 
+        .red{
+            color: #b11f2c;
+        }
         h2 {margin: 0px 0px 20px 0px;
             text-align: center;
-            color: #467881;
+            
             line-height:normal; 
             font-size: normal;
             font-weight: normal;
@@ -159,11 +165,11 @@
             line-height: 30px;
 		}
         h4 {
-			margin: 0px 0px 0px 0px;
-			font-weight: 100;
+			
+			
 			font-size: 20px;
-            color: #467881;
-            line-height: 20px;
+            
+            
 		}
         hr {
 			border: 0;
@@ -184,13 +190,51 @@
         a:hover {
             color: black;
         }
+/* AUDIO PLAYER STYLE */
+    .audioContainer{
+      width: 300px;
+      font-family: sans-serif;
+      font-size: small;
+    }
+    #playlist{
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    #playlist a:hover{
+      background-color:#f9f9f9;
+    }
+    #playlist li{
+     
+      text-decoration: none;
+      display: block;
+      background-color:#cfcfcf;
+    }
+    #playlist li a{
+      margin: 2px 0px;
+      padding: 5px;
+      color:#505050;
+      text-decoration: none;
+      display: block;
+      background-color:#cfcfcf;
+    }
+    #playlist .current-song a{
+      color: #397af2;
+      background-color:#f9f9f9;
+    }
+    #playlist .no-song{
+      margin: 2px 0px;
+      color:#727272;
+      background-color:#b5b5b5;
+      padding: 5px;
+    }
     </style>
 </head>
 <body width="100%" bgcolor="#f2f1ec" style="margin: 0; mso-line-height-rule: exactly;">
     <center style="width: 100%; background: #f2f1ec;">
         <!-- Visually Hidden Preheader Text : BEGIN -->
         <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
-            Découvrez le premier extrait de Marjolaine Morasse!
+            Intense Cité
         </div>
         <!-- Visually Hidden Preheader Text : END -->
         <!--
@@ -221,7 +265,7 @@
                 <!-- Image Header : BEGIN -->
                 <tr>
                     <td bgcolor="#ffffff">
-                        <img src="header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                        <img src="header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
                     </td>
                 </tr>
                 <!-- Image Header : END -->
@@ -231,45 +275,65 @@
                     <td bgcolor="#ffffff">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">
-                                    
-                                    
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:19px; color: #555555;">                                    
+                                        
                                     <!--    MARKDOWN START HERE   -->
-
-                                    <h1>INTENSE CITÉ<br>
+                                    <h1> <span class="red">INTENSE CITÉ</span><br>
                                         PAUL CARGNELLO & SIOU</h1>
                                         <h2>UN ALBUM AU PROFIT DE L’ITINÉRAIRE</h2>
 
-                                    <audio controls controlsList="nodownload" style="text-align: center;">
-                                        <source src="LesPassants.mp3" type="audio/mpeg">
-                                        <a href="http://mariefranceprivee.com/IntenseCite/" target="blank">Cliquez ici</a> pour écouter l'extrait.
-                                    </audio>
-                                    <p>Montréal le x mois 2017, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, atque expedita facere iusto facilis porro vel velit aperiam quae magnam quisquam labore quo corrupti? Natus reprehenderit asperiores ullam maxime iusto.
-                                    <h4>Spectacles</h4>
-                                    <hr>
-                                    <p><strong>7 novembre : Montréal</strong> – Quai des brumes (5 à 7 Abitibi-Témiscamingue) <br>
-                                    <strong>9 novembre : Saint-Isidore</strong> – Bistro Cœur de village<br>
-                                    <strong>12 novembre : Montréal</strong> – Le Blues du Business Man, Coup de cœur francophone <br>
-                                    <strong>19 au 23 novembre</strong> – Résidence artistique au Studio B12<br>
-                                    <strong>23 novembre : Longueuil</strong> – En Vitrine au 300, cabaret musical</p>
-                                    <hr>
-                                    <h4 style="text-align: center;">Marjolaine enchante le 13<sup>e</sup> FRIMAT
-                                     <br><small> <i> <b> La Fabrique culturelle</b></i></small> </h4>
-                                     <p><a href="index.html" target="blank"><img src="videoPoster.jpg" alt="video poster" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img"></a></p>
-                                        <hr>
-                                        <h3 style="text-align: center;"> 
-                                            <a href='http://www.mariefranceprivee.com/' target='_blank' >www.mariefranceprivee.com</a>
-                                        </h3>
-                                        <hr>
-                                        <p style="text-align: center;"> 
-                                            <b>Relations de presse :</b><br>
-                                            <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
-                                        </p>
-                                        <p style="text-align: center;"> 
-                                            <b>Promotion radio : Torpille</b><br>
-                                            <b>Jean-François Blanchet</b> | 450-787-3141 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
-                                        </p>
+                                        <p><strong>Paul Cargnello</strong>, on le connaît pour sa musique et pour ses multiples collaborations et projets. On le connaît aussi comme un résident du NDG, un anglophone qui aime et admire la langue française, un réalisateur, un musicien et un chanteur à l’accent sympathique. On connait aussi Paul pour son côté activiste et revendicateur. Revendicateur et défenseur des droits de l’homme ! Engagé et en faveur de l’implication sociale, Paul s’implique activement depuis plusieurs années dans différents organismes.</p>
+                                        <p>Il y a plusieurs mois, Paul rencontrait Siou...</p>
+                                        <p><strong>Siou</strong>-Sylvain Deslongchamps, est bien connu dans le monde de la rue à Montréal. Il est camelot depuis plusieurs années pour le magazine <strong>L’Itinéraire</strong>. On l’a aperçu au sein des regroupements d’amateurs de poésie et de slam. Il a participé au Pow Wow de la Chapelle historique du Bon Pasteur, a fait partie de l’équipe de création du Big Bang Band, un projet collectif et créatif sur des textes de Clémence Desrochers et de La chorale des Impatients pour l’enregistrement de l’album Les duos improbables.</p>
+                                        <p><strong>Siou</strong> est un camelot mais aussi un artiste aux multiples talents ; dessins, peinture, musique et écriture. À sa rencontre, <strong>Paul</strong> l’a invité en studio et lui a proposé de composer des textes sur lesquels il mettrait de la musique. C’est ainsi qu’<strong>Intense Cité</strong> est né. Un album de 11 chansons - Les mots de Siou sur musique, voix et réalisation de <strong>Paul Cargnello</strong>. L’album a été entièrement enregistré dans le studio de Paul.</p>
+                                        <p>L’album <strong>Intense Cité</strong> sera disponible sur toutes les plateformes numériques dès le 24 novembre et <strong>sera remis gratuitement à l’achat du magazine l’Itinéraire du mois de décembre</strong>, à l’aide d’un code de téléchargement unique. <strong>Tous les revenus générés iront à L’Itinéraire et ses camelots.</strong></p>
+                                        <hr />
+                                        <table>
+                                                <tr>
+                                                  <td valign="top"><div class="cover"><img src="cover.jpg" alt="cover" width="200px;"></div></td>
+                                                  <td valign="top">
+                                                    <div class="audioContainer">
+                                                      <audio src="" controls id="audioPlayer">
+                                                        Sorry !
+                                                      </audio>
+                                                      <ul id="playlist">
+                                                        <li class="current-song"><a href="LesPassants.mp3">￼Les passants (feat. voix de Karine Pion)</a></li>
+                                                        <li><a href="SaufDansTesBras.mp3">Sauf dans tes bras</a></li>
+                                                        
 
+                                                      </ul>
+                                                    </div>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                              <script>audioPlayer();</script>
+                                        
+                                        <hr />
+                                        <p class="center"><em>Pour nous, le projet représente – oui – une opportunité pour nos camelots de vendre davantage demagazines, mais surtout une belle aventure musicale unique dans la réunion des textes d’un camelot et lamusique d’un musicien original. Un projet novateur qui ouvre les portes à de nouvelles façons deconcevoir la musique d’ici. C’est rare, un musicien qui se dévoue à ce point pour une cause sociale !</em></p>
+                                        <p class="center"><em>– Charles-Éric Lavery – Chef du développement social L’Itinéraire</em></p>
+                                        <hr />
+                                        <p><strong>L’Itinéraire</strong> : Le Groupe communautaire L’Itinéraire s’est donné pour mission d’accompagner des personnes marginalisées, exclues du marché traditionnel du travail, ayant connu l’itinérance, ladépendance, ou souffrant de problèmes de santé mentale. Au fil des ans, environ 2500 personnes ont amélioré leur qualité de vie par la rédaction et la vente du journal de rue. Le Groupe communautaire L’Itinéraire mène des projets d’économie sociale qui ont pour but d’accroitre l’autonomie, les compétences et l’employabilité des personnes qui ont la volonté d’améliorer leur condition de vie.</p>
+                                        <hr />
+                                        <h3>LANCEMENT LE 28 NOVEMBRE 17H <br>
+                                            AU QUAI DES BRUMES <br>
+                                            <small>(4481 Rue Saint-Denis)</small></h3>
+                                        <p class="center">Prestation de Paul Cargnello et Siou <br>
+                                        RSVP : Marie-France Privée
+                                        <a href='mailto:marie@mariefranceprivee.com' target='_blank' >marie@mariefranceprivee.com</a></p>
+                                        <hr />
+                                        <h4> Intense Cité - Disponible dès le 24 novembre<br>
+                                        <small>À l’achat de l’Itinéraire <br>et sur les plateformes numériques.</small> <br>
+                                        
+                                        </h4>
+                                        <p class="center"> <a href='www.paulcargnello.com' target='_blank' >www.paulcargnello.com</a> | <a href='www.itineraire.ca' target='_blank' >www.itineraire.ca</a></p>
+                                        
+                                        
+                                        <hr />
+                                        <p class="center"><b> Relations de presse : Marie-France Privée</b> <br>
+                                        514-814-7844 | <a href='mailto:marie@mariefranceprivee.com' target='_blank' >marie@mariefranceprivee.com</a></p>
+                                        <p class="center"> <b> Promotion radio : Torpille </b><br>
+                                        Marjolaine Morasse | 579-721-3212 | <a href='mailto:marjolaine@torpille.ca' target='_blank' >marjolaine@torpille.ca</a>
+                                        Jean-François Blanchet | 450-787-3141 | <a href='mailto:jf@torpille.ca' target='_blank' >jf@torpille.ca</a></p>                                    
                                         <!--    MARKDOWN FINISH HERE   -->
                                 </td>
                             </tr>
