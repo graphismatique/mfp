@@ -1,4 +1,5 @@
 # Markdown Cheatsheet
+## Edited in StackEdit from G Drive
 
 ## Document de référence Markdown
 
@@ -42,5 +43,5 @@ Tables :
 That's it, for now ;) 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU2OTY3MjcxXX0=
+eyJoaXN0b3J5IjpbLTE1NTAxNTMxMzRdfQ==
 -->
