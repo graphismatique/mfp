@@ -1,10 +1,5 @@
 # Markdown Cheatsheet
-## Edited in StackEdit from G Drive
-
-## Document de référence Markdown
-
-## Edited second time
-
+## 
 ---
 
 hr : 3 tirets - - - 
@@ -45,5 +40,5 @@ Tables :
 That's it, for now ;) 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwNTkxMjI3NTZdfQ==
+eyJoaXN0b3J5IjpbLTE1MDIxNjEzNDNdfQ==
 -->
