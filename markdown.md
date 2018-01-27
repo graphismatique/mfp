@@ -4,9 +4,9 @@
 
 hr : 3 tirets - - - 
 
-*italique* : 1 asterix avant / apres * i *
-
 **bold** : 2 asterix avant / apres ** b **
+
+*italique* : 1 asterix avant / apres * i *
 
 ***bold italic*** : 3 asterix avant / apres * * * b i * * *
 
@@ -40,5 +40,5 @@ Tables :
 That's it, for now ;) 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxNDA3NTg1NDBdfQ==
+eyJoaXN0b3J5IjpbNTQ5ODc4NDUyXX0=
 -->
