@@ -1,4 +1,4 @@
-# Markdown Cheatsheet
+# MD Cheatsheet
 ## Comment écrire en markdown
 ---
 
@@ -40,5 +40,5 @@ Tables :
 That's it, for now ;) 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwNzczOTY2OF19
+eyJoaXN0b3J5IjpbLTIxNDA3NTg1NDBdfQ==
 -->
