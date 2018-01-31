@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+            text-align: justify;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            color: #12519a;
+            margin: 30px 0px 0px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 30px 0px 20px 0px;
+            text-align: center;
+            color: #12519a;
+            line-height:normal; 
+            font-size: normal;
+            font-weight: normal;
+            }
+
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: normal;
+            margin: 10px 0px 30px 0px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #dc3b20;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #12519a;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#1f1f1f" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #1f1f1f;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            ACCOMPAGNE-MOI - Pièce de théâtre présentée dans le cadre du Mois de l’histoire des Noirs
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    <h1>ACCOMPAGNE-MOI</h1>
+                                    <h3><b><i>Pièce de théâtre présentée<br>
+                                        dans le cadre du Mois de l’histoire des Noirs</i></b></h3>
+                                    
+                                    <p>Montréal, 1er février 2018 – Dans le cadre du Mois de l’histoire des Noirs, la pièce de théâtre Accompagne-Moi sera présentée le 16 février prochain au Gesù. Une pièce unique qui traite de l’accompagnement, de la réussite et de ses sacrifices. Les deux semaines précédant l’évènement seront dédiées à la consultation d’organismes volontaires qui œuvrent au quotidien dans les différentes communautés culturelles de Montréal et qui viennent en aide, entre autres, aux réfugiés, aux jeunes et aux familles isolées.</p>
+                                    <p>Pour l’instant d’une soirée seulement, le public est convié à venir assister à l’œuvre collaborative de cinq femmes pour qui art, rime avec engagement social. Écrite et mise en scène par BerekYah, jeune dramaturge Québécoise d’origine haïtienne, Accompagne- moi mets en lumière les relations entre démunis et privilégiés. La bande sonore composée et produite par l’artiste Jenny Salgado sera offerte en primeur à l’achat du livre le soir ￼du 16 février et sortira en ligne le 23 février.</p>
+                                    
+                                    <hr>
+                                    <h2>ACCOMPAGNE-MOI</h2>
+                                    <p>Accompagne-moi est le fruit d’un travail de recherche et de création accompli à l’école supérieure de théâtre de L’UQAM de Montréal ainsi qu’en Guyane française sur la scène conventionnée du Théâtre de Macouria.</p>
+                                    <p>Accompagne-moi marie fiction, poésie, humour et drame. Une métaphore sur les organismes d'aide qui trop souvent, sont contraints à s’élever en institution à l'heure de la rentabilité, loin de leur mission première, le terrain. Cette pièce satirique raconte l’évolution de Soleil, un jeune marginalisé, d’une dame qui l’accompagne et de son assistant Paul, tous soutenus par la comédienne Lamia Benhacine, seule sur scène, elle mue, se transforme. La musique, la danse et la vidéo sont au cœur de cette œuvre.</p>
+                                    <p>Après la représentation, un temps de discussion et de réflexion est prévu, animé par le rappeur Webster. Cet instant tiendra compte des réponses récoltées lors de la consultation.</p>
+
+                                    <hr>
+                                    <h2>Distribution</h2>
+                                    <p class="center">
+                                        <b>Texte et mise en scène :</b> BerekYah <br>
+                                        <b>Musique :</b> Jenny Salgado et André Courcy <br>
+                                        <b>Interprète :</b> Lamia Benhacine<br>
+                                        <b>Chorégraphe :</b> Anne Meyer, chorégraphe française <br>
+                                        <b>Scénographe :</b> Marilyne Beauchamps</p>
+
+                                    <hr>    
+                                    <h2><a href="http://www.legesu.com/evenement/accompagne-moi/"> ⇾ BILLETS EN VENTE AU GESÙ</a><br>
+                                        <small>Les organismes de soutiens et leurs usagés <br>y sont conviés gratuitement.</small></h2>
+                                        <p class="big"></p>
+
+
+                                    <hr>
+                                    
+                                    <p style="text-align: center;"> 
+                                        <b>Informations : </b><br>
+                                        <b>Marie-France Privée</b> <br>
+                                        514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    
+                                    <hr>
+                                        <!--    MARKDOWN FINISH HERE   -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
