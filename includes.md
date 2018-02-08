@@ -1,3 +1,2 @@
 # Includes other pages content
----
-{% include markdown.md %}
+{% include_relative includes/footer.html %}
