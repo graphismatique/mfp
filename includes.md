@@ -1,3 +1,3 @@
 # Includes other pages content
 ---
-{% include footer.html %}
+{% include markdown.md %}
