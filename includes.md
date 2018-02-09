@@ -1,2 +1,2 @@
-# Including other pages content
+# Including
 {% include includes/content.html %}
