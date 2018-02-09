@@ -14,7 +14,7 @@
 
   <body>
     
-            <header class="middle lightblue">header</header>
+            <header class="middle lightblue">{{ site.title | default: site.github.repository_name }}</header>
         <div class="flex-grid">
             <div class="col middle darkblue">darkblue</div>
             <div class="col middle lightblue">lightblue</div>
