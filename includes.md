@@ -1,2 +1,2 @@
 # Including
-{% include includes/content.html %}
+{% include content.html %}
