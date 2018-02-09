@@ -1,5 +1,65 @@
 ---
 ---
-h1  {text-align: center; color: red;}
+* {
+  margin: 0;
+  padding: 0;
+}
+.darkblue {
+  background-color: #26355e; color: white;
+}
+.lightblue {
+  background-color: #a8e2f0;
+}
+.darkgreen {
+  background-color: #4acab1;
+}
+.lightgreen {
+  background-color: #d2f3ec;
+}
+.white {
+  background-color: white;
+}
+body {
+  background-color:whitesmoke;
+}
+.middle { 
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.flex-grid {
+  display: flex;
+  margin: 10px auto;
+  max-width: 1000px;
+}
+header {
+  text-align: center;
+  flex: 1;
+  height: 300px; 
+}
+.col {
+  min-height: 100px;
+  flex: 1;
+  margin: 10px;
+}
+.twoCol {
+  flex: 2;
+  margin: 10px;
+}
+p{
+  margin: 10px 0px;
+}
+footer {
+  text-align: center;
+  flex: 1;
+  height: 200px;
+}
+@media (max-width: 600px) {
+  .flex-grid {
+    display: block;
+    margin: 20px 10px;
+  }
+}
 
 
