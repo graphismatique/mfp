@@ -1,2 +1,1 @@
-# Including
 {% include content.html %}
