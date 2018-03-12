@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 20px;
+            text-align: justify;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 25px;
+            color: #716f83;
+            margin-top: 5px;
+            line-height:35px;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            
+            line-height:normal; 
+            font-size: 25px;
+            font-weight: normal;
+            }
+
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #716f83;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #716f83;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #716f83;
+            text-decoration: none;
+        }
+        a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#f2f1ec" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f2f1ec;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            Découvrez son tout premier EP !
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/jennysalgado/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#20282b">
+                        <img src="assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: white;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#20282b">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #e6e6e6;">                                    
+                                        
+<h1>Une bande sonore pour la pièce de théâtre <br>ACCOMPAGNE-MOI</h1>
+<h2>Une introduction à son prochain album...</h2>
+<p>Montréal, le 12 mars 2018 - Après avoir été en nomination au <strong>Gala du cinéma québécois</strong>, remporté le prestigieux prix <strong>Canadian Screen Award</strong> à Toronto et le <strong>CIMM</strong> à Chicago en 2016, l’auteure-compositrice-interprète <strong>Jenny Salgado</strong> est de retour avec une nouvelle bande originale mais en théâtre cette fois avec la trame sonore de la pièce « Accompagne-moi ». Présentée au Gesù en février dernier, « <strong><em>Accompagne-moi</em></strong> » est une pièce créée en Guyane, chapeautée par la compagnie française Maztek et la chorégraphe Anne Mayer, écrite et mise en scène par l’auteure québécoise BerekYah.</p>
+<p>On y retrouve <strong>dix titres</strong>, certains instrumentaux, certains avec voix qui racontent une histoire que Jenny a faite sienne et qui devient <strong>l’introduction de son album à venir</strong>. Dans sa signature qui lui est propre et unique, on s’y promène dans les genres musicaux et dans une ambiance dynamique, ponctuée de solides chansons et de textes littéraires imposants. Jenny retourne aux sources avec un son urbain où hip hop, rap, slam, root s’imposent.</p>
+<hr />
+<p><em>« Ça été une expérience tout à fait incomparable et inattendue pour moi et j’ai vécu un trip de malade avec mon complice André Courcy à faire cette création que je présente comme la première partie, le prélude de mon nouvel album. Je crois bien que c’est la meilleure œuvre musicale que j’ai composée à ce jour. »</em></p>
+<p class="center"><strong><em>Jenny Salgado</em></strong></p>
+<hr />
+<p><strong>Jenny Salgado</strong> s’est récemment retrouvée dans quelques articles, parmi <strong>les tops de la musique québécoise au féminin.</strong> Jenny, qui a fait partie du ￼mythique groupe <strong>Muzion</strong> à la fin des années 90, ne cesse de s’impliquer dans ￼le domaine, social, culturel, politique et de multiplier les diverses ￼collaborations musicales. Elle prépare un nouvel album et présente ￼aujourd’hui un avant-goût avec cette bande sonore.</p>
+<img src="assets/cover.jpg" alt="">
+<audio controls controlsList="nodownload" style="text-align: center;">
+    <source src="assets/UneVoix.mp3" type="audio/mpeg">
+        <!-- https://docs.google.com/uc?export=&id=1M2r5Yz72VeMAKjpNv2VmyOkjhKRbsmBT -->
+        <a href="http://mariefranceprivee.com/MarjolaineMorasse/" target="blank">Cliquez ici</a> pour écouter l'extrait.
+</audio>
+<p class="center">LA PIÈCE « <strong><em>UNE VOIX</em></strong> » EST DISPONIBLE<br>SUR LA PLATEFORME 45 TOURS.</p>
+<p class="center">La bande sonore de « Accompagne-moi » sera disponible en ligne sur toutes les plateformes web dès le 16 mars 2018 !</p>
+<hr />
+<p class="center"><strong>Informations et promotion :</strong><br>
+Marie-France Privée / <a href='mailto:marie@mariefranceprivee.com' target='_blank' >marie@mariefranceprivee.com</a> / 514-814-7844 </p>
+
+                                   
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
