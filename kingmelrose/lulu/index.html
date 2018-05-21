@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+        }
+        .center  {
+            text-align: center;
+        }
+        .pink{
+            color: #ff42a0;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            line-height: normal;
+            font-weight: lighter;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            color: #ff42a0;
+            line-height:normal; 
+            font-weight:bold;
+            font-size: 35px;
+            }
+
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #ff42a0;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#ffde44" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #ffde44;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            King Melrose présente un nouvel extrait...Lulu!
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/kingmelrose/lulu/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    
+                                    <h1>Une nouvelle chanson</h1>
+                                    <h2><i>Lulu</i></h2>
+                                    
+                                    <p>Montréal, 22 mai 2018 – C’est aujourd’hui en cette belle journée de mai que <b>King Melrose</b> débarque dans vos oreilles avec son tout nouvel extrait, <b class="pink">LULU</b> ! Une pièce pop au groove unique à la <b>King Melrose</b> qui nous transporte au soleil, dans un univers fantasmagorique. <b class="pink">LULU</b>...c’est le soleil, la liberté, l’amour et le rêve ! Qui n’a jamais secrètement rêvé d’une histoire d’amour exotique ? <b>King Melrose</b> nous invite à découvrir <b class="pink">LULU</b>.... sous les étoiles d’Honolulu !</p>
+                                    
+                                    <p>Avec la complicité de <b>Toby Gendron</b> à la réalisation ainsi que de <b>Sylvain Michel</b> à la co-réalisation et aux arrangements, <b>King Melrose</b> nous offre cette nouveauté estivale qui se retrouvera sur son prochain album. On reconnait assurément sa signature qui, depuis quelques années déjà, lui permet de se démarquer et d’atteindre le sommet des palmarès radio.</p>
+                                    
+                                    <p><b>King Melrose</b> est actuellement en studio pour peaufiner un troisième album à paraître cet automne. Avec <b>deux albums</b> à son actif, plus de <b>500 spectacles</b> à travers la province, <b>neuf extraits radio</b> et plusieurs <b>#1 dans les palmarès radio</b>, <b>King Melrose</b> s’est taillé une place de choix dans le paysage musical québécois ! Il multiplie les spectacles aux quatre coins de la province et a récemment eu l’occasion de faire les premières parties de Francis Cabrel, Julien Clerc, Carla Bruni et Christophe Maé lors de leur dernier passage au Québec.</p>
+                                    <hr>    
+                                    
+                                    <!-- Play Button For Email Version -->
+                                    <!-- <a href="http://mariefranceprivee.com/kingmelrose/lulu/"><img src="assets/PlayBtn.png" alt="Écoutez l'extrait"></a> -->
+                                    
+                                    <!-- Full Audio // For Online Version  -->
+                                        <audio controls controlsList="nodownload" style="text-align: center;"><source src="http://mariefranceprivee.com/kingmelrose/lulu/assets/KingMelrose_Lulu.mp3" type="audio/mpeg"></audio>
+                                        
+                                    <hr>
+                                    <h3>EN CONCERT CET ÉTÉ !</h3>
+                                    <b>10 juin</b> - Montréal - Casino de Montréal <br>
+<b>16 juin</b> - St-George de Beauce - Shaker <br>
+<b>24 juin</b> - Sainte-Marthe-sur-le-lac - Fête nationale<br>
+<b>29 juin</b> - Trois-Rivières - Festivoix<br>
+<b>30 juin</b> - Saint-Antoine-Abbé - Camping des pins<br>
+<b>10 juillet</b> - Québec - Parc Roland-Beaudin<br>
+<b>14 juillet</b> - Saint Agathe des monts - Parc Place Lagny <br>
+<b>20 juillet</b> - Saint-Constant - Centre culturel Denis-Lord <br>
+<b>21 juillet</b> -Drummondville - Place St-Frédéric<br>
+<b>26 juillet</b> - Saint-Alphonse-Rodriguez - Doux jeudis sous les étoiles <br>
+<b>29 juillet</b> - Laval - Parc des Prairies <br>
+<b>31 juillet</b> - Sainte-Thérèse - La place du village <br>
+<b>11 août</b> - Saint-Hippolyte <br>
+<b>17 août</b> - Saint-Jean-de-Matha - Golf Matha <br>
+<b>18 août</b> - Saint-Gabriel-de-Brandon <br>
+<b>25 août</b> - Saint-Césaire - Parc de la halte routière <br>
+<b>3 septembre</b> - Chambly - Bières et saveurs de Chambly <br>
+<b>15 septembre</b> - Sainte-Sophie-d'Halifax - Espace Sophia
+                                    
+                                    <hr>
+                                     <h3 class="center">À surveiller... <br><small>un prochain album à l’automne 2018 !</small></h3>
+                                    <hr>
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                         <a href="http://www.kingmelrose.com" target='_blank'> kingmelrose.com</a>    
+                                         <a href="https://www.facebook.com/kingmelrose/" target="blank"><img src="assets/facebook.png" height="25px" alt="Facebook" style="vertical-align:middle; padding:0px 5px;"></a>
+                                         <a href="https://www.instagram.com/kingmelrose/" target="blank"> <img src="assets/instagram.png" height="25px" alt="Instagram" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                         
+                                    </h3>
+                                    <hr>
+                                    <p style="text-align: center;"> 
+                                        <b>Relations de presse :</b><br>
+                                        <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p style="text-align: center;"> 
+                                        <b>Promotion radio : Torpille</b><br>
+                                        <b>Jean-François Blanchet</b> | 450-787-3141 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
+                                        <b>Marjolaine Morasse</b> | 579 721-3212 | <a href="marjolaine@torpille.ca">marjolaine@torpille.ca</a>
+                                    </p>
+                                    <p style="text-align: center;"><b>Gérance</b><br>
+                                        <b>Toby Gendron</b> | 514 942-2927 | <a href="tobygendron@gmail.com">tobygendron@gmail.com</a>
+                                    </p>
+                                    <p style="text-align: center;"><b>Spectacles : Productions Pierre Hébert</b><br>
+                                        <b>Diane Hébert</b> | 514 630-5610 | <a href="dianehebert@live.ca">dianehebert@live.ca</a></p>
+                                    <p style="text-align: center;"><b>Spectacles corporatifs : Evenko</b><br>
+                                         <b>Genevieve Lavigne</b> | 514 925-2169</p>    
+                                        <hr>
+                                        <!--    MARKDOWN FINISH HERE   -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
