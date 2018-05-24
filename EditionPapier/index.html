@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+            text-align: justify;
+        }
+        
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+            margin: 20px 0px 10px 0px;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            color: #f1a0bb;;
+            line-height:normal; 
+            font-size: normal;
+            font-weight: normal;
+            }
+
+        h3 {
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #f1a0bb;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #ed5484;
+        }
+        .outside a {
+            color: #ed5484;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#f9cede" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f9cede;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            KO Média lance un nouveau magazine Édition Papier
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/EditionPapier/" target="_blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="http://mariefranceprivee.com/EditionPapier/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family:Arial, Helvetica, sans-serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    <h1>KO Média lance un nouveau magazine Édition Papier</h1>
+                                    <h2>un magazine inspirant qui met en vedette la&nbsp;cuisine italienne!</h2>
+                                    <hr>
+                                    <h3>Les trois filles sont disponibles avec grand plaisir pour des entrevues téléphoniques. <br>
+                                        <a href="mailto:marie@mariefranceprivee.com">Écrivez-moi directement pour réserver votre entrevue.</a></h3>
+                                    <hr>
+                                    <p>KO Média est fière d’annoncer le lancement de di Stasio, un magazine créé en collaboration avec la populaire et passionnée animatrice Josée di Stasio.</p>
+                                    <p>Comme en Italie – c’est le thème de ce tout premier numéro - propose à la fois un carnet de voyage inspirant, de délicieuses rencontres et, bien sûr, une sélection de savoureuses recettes.</p>
+                                    <p>On se demande souvent quel est le secret des Italiens. Leur cuisine est com- posée de peu d’ingrédients, mais elle regorge de saveurs. Ils ne cultivent pas de café, mais c’est pourtant en Italie qu’on peut boire le meilleur. Sans compter qu’ils savent profiter pleinement de l’instant présent et du doux moment de l’aperitivo... Au fil des pages, Josée nous plonge dans cet univers de délices et de savoir-faire.</p>
+                                    <p>Avec une signature et une couleur qui lui sont propres, et surtout, avec le désir de mettre les produits frais de l’avant, Josée di Stasio nous fait découvrir des Florentins d’exception, nous transmet ses adresses coups de cœur et nous offre plus de 40 recettes sublimes et simplissimes qui lui sont chères; des pâtes délicieuses pour se faire plaisir, des antipastis et des cocktails pour célebrer, de divins desserts parfumés au café...</p>
+                                    <p>«Je suis très fière de ce premier numéro de di Stasio, affirme Sophie Banford, éditrice du magazine et directrice générale de KO Média. Travailler avec Josée est un réel bonheur! Le contenu est pertinent, les photos de son voyage nous font rêver, ses rencontres nous inspirent et...on veut faire toutes ses recettes. Je vous préviens, ce magazine donne envie de devenir italien!»</p>
+                                    <p>Cette escapade gourmande en mots et en images au cœur de l’Italie sera en kiosque partout au Québec à compter du vendredi 27 avril. Envie de vous italianiser?</p>
+                                    <p>Les ventes publicitaires sont assurées par le groupe Rogers, producteur de plus de 50 magazines grand public et publications spécialisées sur le territoire canadien.</p>
+                                    <hr>
+                                    <p style="text-align: center;"><b>Pour les journalistes qui aimeraient recevoir la version numérique de di&nbsp;Stasio pour consultation, merci d’envoyer un courriel à <a href="envoinumerique@ko-media.ca">envoinumerique@ko-media.ca</a>.</b></p>
+                                    <hr>
+                                    <p class="center"><b>À propos du Groupe KO</b></p>
+                                    <p>Le Groupe KO réunit les entités Productions KOTV, Productions KO Scène, KO 24 et KO Média. Dirigées par le scénariste- humoriste-comédien-producteur-entrepreneur Louis Morissette, elles sont mues par le désir de raconter des histoires qui captivent le public, et ce, en maîtrisant chaque aspect de la création.</p>
+                                    <p>Qu’il s’agisse d’émissions de télévision, de spectacles, de films ou de magazines, la mission du groupe est fort simple : conquérir le monde pour ensuite le divertir. Dans une industrie qui foisonne de possibilités, le Groupe KO voit des occasions et les saisit.</p>
+                                    <hr>
+
+                                    <p style="text-align: center;"> 
+                                            <b>Relations de presse</b><br>
+                                            <b>Geneviève Clément Communications</b><br>
+                                            <b>Geneviève Clément</b> | <a href="gc@genevieveclement.com">gc@genevieveclement.com</a> | 514-609-5444
+                                        </p>
+                                            <p style="text-align: center;">
+                                                <b>Ventes publicitaires Rogers</b><br> 
+                                                <b>Isabelle Rochefort</b> | Vice-présidente ventes média et solutions clients | 514-734-6188
+                                            </p>
+                                            <p style="text-align: center;">
+                                                <b>Ventes publicitaires KO Média</b><br> 
+                                                <b>Sandrine Dahan</b> | Directrice des ventes locales | 514-449-7438
+                                            </p>
+                                        
+                                        <hr>
+                                        <img src="http://mariefranceprivee.com/EditionPapier/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                                        <!--    MARKDOWN FINISH HERE   -->
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; " class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="outside small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
+
+
