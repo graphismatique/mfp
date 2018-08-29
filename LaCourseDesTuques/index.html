@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            color: #226e9c;
+            margin: 0px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            color: #226e9c;
+            line-height:normal; 
+            font-size: 20px;
+            font-weight: normal;
+            }
+
+        h3 {
+            color: #226e9c;
+            margin: 25px 0px 0px 0px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #226e9c;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #a6cbdd;
+        }    
+        .outside a {
+            color: #a6cbdd;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#b91fb4" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #b91fb4;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+            COMMUNIQUÉ DE PRESSE
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <!-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/LaCourseDesTuques/Template/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="http://mariefranceprivee.com/LaCourseDesTuques/Template/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    <h1>COMMUNIQUÉ DE PRESSE</h1>
+                                    <h2>LE RETOUR DE VOS PERSONNAGES CHOUCHOUS!<br>
+                                        <b><i>Sur vos écrans dès décembre 2018</i></b>
+                                    </h2>
+                                    <p>Montréal, le 7 juin 2018 – CarpeDiem Film & TV et Les Films Séville, une filiale d’Entertainment One, en collaboration avec le Studio Singing Frog, dévoilent aujourd’hui la <b>pré bande-annonce</b> ainsi que la <b>première affiche</b> de La Course des Tuques, nouveau film d’animation 3D qui sera sur nos écrans dès décembre 2018.</p>
+                                    <p>Suite au succès de la première réinterprétation de La Guerre des Tuques en animation 3D, vos personnages chouchous sont de retour, pour le plus grand bonheur de toutes les générations! Cette fois, la guerre fait place à la course. Une spectaculaire course de luge au village met en vedette vos personnages préférés, en plus d’en accueillir trois petits nouveaux, Zac et sa cousine Charlie ainsi qu’un chiot à la bouille irrésistible. Cette nouvelle aventure nous entraînera une fois de plus au cœur de l’enfance avec humour, cœur et émotion!</p>
+                                    <p>Cette nouvelle production a été confiée au réalisateur Benoît Godbout (Les Grandes Gueules s’animent, Pérusse Cité, Toupie et Binou, Vie de Quartier, Les Mini-Tuques) et au co-réalisateur François Brisson (Arsène Lupin, Inuk, La Guerre des Tuques 3D) appuyé du consultant à la réalisation et à la direction photo Jean-François Pouliot (La Grande Séduction, La Guerre des Tuques 3D). Philippe Arseneault Bussières (La légende de Sarila) assure la direction artistique. Le scénario est écrit par les auteurs Claude Landry, Maxime Landry et Paul Risacher. Marie-Claude Beauchamp et Sophie Roy de CarpeDiem agissent comme productrices.</p>
+                                    <p>Le film est en production depuis plusieurs mois dans les studios de Singing Frog à Montréal où plus de 100 artistes contribuent par leur talent à mettre en images cette toute nouvelle histoire. Basée sur des valeurs telles que l’entraide, le travail d’équipe, le respect, la franchise, l’amitié et la confiance, François-les-lunettes déploiera sans retenue tout son génie afin de contrer les tricheries que lui impose Zac.</p>
+                                    <p>Rappelons que La Guerre des Tuques 3D a récolté plusieurs prix et honneurs ainsi que de multiples nominations tant au Canada qu’à l’étranger. Gagnant des prix Canadiens et Québecois récompensant le meilleur box-office en 2015, le film a été vendu dans plus de 120 pays à l’international et il a connu un immense succès au box-office en Chine.</p>
+                                         
+                                    <!-- VIDEO POSTER -->
+                                    <a href="http://mariefranceprivee.com/LaCourseDesTuques/Template/"><img src="http://mariefranceprivee.com/LaCourseDesTuques/Template/assets/PlayBtn.jpg" alt="Écoutez l'extrait"></a>
+                                    <hr>
+                                    
+                                    <!-- VIDEO YOUTUBE EMBED -->
+                                    <!-- <iframe width="100%" height="295" src="https://www.youtube.com/embed/rJT5Jg9Yujc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                
+                                    <hr> -->
+                                    <p style="text-align: center;"> 
+                                        <b class="big">Relations de presse Carpediem/Singing Frog Studio</b><br>
+                                        <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p style="text-align: center;"> 
+                                        <b class="big">Relations de presse Les Films Séville</b><br>
+                                        <b>Anne-Catherine Groulx</b> | 514-878-4974 | <a href="mailto:agroulx@filmsseville.com">agroulx@filmsseville.com</a><br>
+                                        <b>Sophie Bilodeau</b> | 514-878-6821 | <a href="mailto:sbilodeau@filmsseville.com">sbilodeau@filmsseville.com</a>
+                                    </p>
+                                    <hr>
+                                    <h3>CARPEDIEM FILM & TV</h3>
+                                    <p>Fondée en 2004 par Marie-Claude Beauchamp, CarpeDiem est une entreprise de production œuvrant dans le secteur du divertissement audiovisuel ciblant principalement la famille. CarpeDiem s’emploie à fournir des productions de qualité à son public de 3 à 103 ans aussi bien en tournage « live », qu’en animation 2D, 3D, stéréoscopique et tournage hybride. CarpeDiem a à son actif plusieurs séries télé dont la plus récente Les Mini- Tuques, série basée sur La Guerre des Tuques 3D qui par ailleurs, entrera en ondes sur Télétoon et Treehouse dès septembre prochain. CarpeDiem a produit récemment deux autres longs métrages, La Légende de Sarila (co-produit avec 10E Ave), La Guerre des Tuques 3D et est présentement active à financer trois nouveaux longs métrages en animation 3D pour livraison en 2020-2021.</p>
+
+                                    <h3>STUDIO SINGING FROG</h3>
+                                    <p>Le Studio Singing Frog a été fondé au printemps 2013. Il a à son actif maintenant plus de 120 heures de production de films et séries d’animation et de live action (My Life Me, Grand Star, La Légende de Sarila, etc). Le studio, qui compte maintenant plus de 100 employés, a animé tout le film à succès La Guerre des Tuques 3D ainsi que la série animée Les Mini-Tuques, série télévisée dérivée du film.</p>
+
+                                    <h3>LES FILMS SÉVILLE</h3>
+                                    <p>Avec son siège social à Montréal, Les Films Séville sont le premier distributeur de contenu cinématographique au Québec. Partenaire de marque de l’industrie du film québécois et filiale d’Entertainment One, Les Films Séville se démarquent également comme le plus grand distributeur international de films québécois grâce à leur société affiliée, Seville International.</p>
+
+                                    <h3>ENTERTAINMENT ONE</h3>
+                                    <p>Entertainment One ltée (LSE:ETO) est un studio mondial indépendant qui se spécialise dans le développement, l’acquisition, la production, le financement, la distribution et la vente de contenu de divertissement. L’expertise diversifiée de l’entreprise couvre la production et la vente de films, de musique et d’émissions de télévision, la programmation pour la famille, la mise en marché et la distribution, ainsi que le contenu numérique. Grâce à sa portée internationale et à son étendue à grande échelle, propulsée par ses connaissances approfondies du marché local, la compagnie distribue le meilleur contenu au monde entier.</p>
+                                    <p>Le réseau robuste d’Entertainment One inclut la nouvelle compagnie de production MAKEREADY de Brad Weston; l’entreprise de création de contenu Amblin Partners avec Steven Spielberg, DreamWorks Studios, Participant Media et Reliance Entertainment; la compagnie de production cinématographique et de ventes internationales Sierra Pictures; les entreprises de production télévisée sans script Renegade 83; les maisons de disques de calibre mondial Dualtone Music Group et Last Gang; et l’agence digitale primée Secret Location.</p>
+                                    <p>La bibliothèque des droits de l’entreprise est exploitée à travers tous les supports de médias et englobe plus de 100 000 heures de contenu cinématographique et télévisé ainsi qu’approximativement 40 000 pièces musicales.</p>
+                                    <p><a href="http://www.laguerredestuques3d.com" target="_blank">www.laguerredestuques3d.com</a><br>
+                                        <a href="http://www.facebook.com/laguerredestuques" target="_blank">www.facebook.com/laguerredestuques</a><br>
+                                        <a href="http://www.carpediemfilmtv.com" target="_blank">www.carpediemfilmtv.com</a><br>
+                                        <a href="http://www.filmsseville.com" target="_blank">www.filmsseville.com</a><br>
+                                        <a href="http://www.singingfrogstudio.com" target="_blank">www.singingfrogstudio.com</a><br>
+                                    </p>
+                                    <hr>
+                                    <p>Merci de vous inscrire pour télécharger affiche, dossier de presse et bande-annonce : <a href="http://medias.lesfilmsseville.com" target="_blank">http://medias.lesfilmsseville.com</a></p>
+                                    <hr>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/LaCourseDesTuques/Template/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: white;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="outside small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
