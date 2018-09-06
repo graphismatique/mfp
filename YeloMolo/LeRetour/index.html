@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title>Geneviève Racette présente le vidéoclip I Can't Make You Love Me</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            
+            text-align: center;
+            line-height:30px; 
+            font-size: 30px;
+            }
+
+        h2 {text-align: center;
+            font-size: 40px;
+            color: #4bc0fc;
+            margin-top: 20px;
+            line-height: auto;
+            }
+        .color{color: #4bc0fc;}
+
+            
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 20px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #555555;
+            line-height: 20px;
+		}
+        
+        p {
+            line-height: 19px;
+		}
+
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+    }
+        hr {
+			border: 0;
+			background-color: #dbe1e8;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            
+        }
+        a {
+            color: #4bc0fc;
+            text-decoration: none;
+        }
+        a:hover {
+            color:#7f7f7f;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body width="100%" bgcolor="#191818" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #191818;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td style="padding: 20px 0; text-align: center">
+                         <p class="small"><a href="http://mariefranceprivee.com/YeloMolo/LeRetour/" target=blank>Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="http://mariefranceprivee.com/YeloMolo/LeRetour/assets/header.jpg" width="600" height="" alt="Le retour de Yelo Molo" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: justify; padding: 30px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">
+                                    <h1>Nouvel album</h1>
+                                   <h2><i>L’amour alpha</i></h2>
+                                    <hr>
+                                    <p>Montréal le 6 septembre 2018 - Le groupe <b>Yelo Molo</b> est de retour parmi nous! Le 25 septembre prochain, leur nouvel album sera sur les tablettes. Un des groupes chouchous des québécois revient avec un tout nouvel album <b><i>L’amour alpha</i></b>. Le groupe ska-pop connu pour ses énormes succès radiophoniques et ses tournées de spectacles à travers la province revient avec du nouveau matériel.</p>
+                                    <p>Ce retour est une initiative du leader Stéphane Yelle qui a senti un appel à l’écriture <i>« J’ai eu un besoin intrinsèque de faire des chansons énergiques et positives comme notre premier album en 1999... Depuis mon diagnostique d'Asperger, beaucoup de choses se sont chamboulées; un besoin d'être soi-même, d'enlever un masque et un besoin encore plus criant de sensibiliser tout ce que je peux côtoyer à la différence ».</i></p>
+                                    <p>Stéphane Yelle s’est encore une fois entouré de musiciens de talent, comprenant une section de cuivres qui a forgé le son reconnu du groupe. <b><i>L’amour alpha</i></b> compte 14 chansons écrites, composées, réalisées et produites par Stéphane Yelle et Garbiel Hardy. <b><i>L'amour alpha</i></b> est une quête de l’espoir en l'humain. Des textes loufoques et accrocheurs à la Yelo Molo. Des anecdotes profondes dans une musique qui grafigne.</p>
+                                    <p>Pour les fans de premières heures, les trippeux et les curieux, Yelo Molo est de retour avec un tout nouvel album et une tournée de spectacles au cours de la prochaine année.</p>
+                                    <hr>
+                                    <h3>LANCEMENT<br>
+                                        <small>25 septembre 19h00 – Montréal - Club Soda <br>29 septembre 18h00 – Québec - L'Anti Bar & Spectacles</small>
+                                    </h3>
+                                    <hr>
+                                    <h3><i class="color">L’amour alpha</i> <br>
+                                        <small>Disponible dès le 21 septembre. <br><a href="https://www.facebook.com/yelomolo" target="_blank">www.facebook.com/yelomolo</a></small>
+                                    </h3>
+                                    <hr>
+                                    <p style="text-align: center;"><b>Gérance et spectacles : </b><br>R-Management | <b>Guy Ritchot</b><br>514.962.1351 | <a href="mailto:guy@r-management.ca">guy@r-management.ca</a></p>
+                                    <p style="text-align: center;"><b>Promotion et relations de presse :</b><br>R-Management | <b>Marie-France Privée</b><br>514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+
+                <!-- Image Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="http://mariefranceprivee.com/YeloMolo/LeRetour/assets/logos.png" alt="Logos Footer" border="0" align="center" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Footer : END -->
+
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
