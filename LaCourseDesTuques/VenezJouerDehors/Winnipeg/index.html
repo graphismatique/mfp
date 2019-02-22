@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin: 0px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 22px;
+            }
+
+        h3 {
+            margin: 25px 0px 0px 0px;
+            font-weight: normal;
+            color: #226e9c;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #226e9c;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        
+        .blue {
+            color: #226e9c;
+        }
+        a {
+            color: #226e9c;
+            
+        }
+        a:hover {
+            color: #c84cc4;
+        }  
+        sup {
+        font-size: 0.60em;
+        vertical-align: super;
+        line-height: 0;
+        };  
+       
+    </style>
+</head>
+<body width="100%" bgcolor="#e7f1fb" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #e7f1fb;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <!-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/LaCourseDesTuques/BandeAnnonce/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/LaCourseDesTuques/VenezJouerDehors/Winnipeg/" target="blank"><img src="http://mariefranceprivee.com/LaCourseDesTuques/VenezJouerDehors/assets/header.jpg" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; color: #555555;">                                    
+                                    <!--    MARKDOWN START HERE   -->
+                                    <hr>
+                                    <h1>VENEZ JOUER DEHORS AVEC NOUS!<br><small>Winnipeg 23-24 Février<br><span class="blue">Festival du voyageur, 9h à 16h</span></small></h1>
+                                    <hr>
+                                    <p>CarpeDiem Film & TV, en collaboration avec ParticipACTION, le FOND TELUS et GARANT INC, vous invite à poursuivre l’aventure du film tant acclamé par la critique LA COURSE DES TUQUES. Présenté par eOne/ Séville, LA COURSE DES TUQUES a déjà atteint près de 2.5 millions de dollars au Box-office canadien. Une grande victoire pour le cinéma d’animation québécois!</p>
+                                    <p>LA COURSE DES TUQUES nous transporte maintenant dans une tournée pancanadienne en plein air avec les personnages du film où la compétition et les concours nous incitent à bouger et participer à des activités physiques extérieures. Comme dans le film, les activités nous font découvrir le plaisir de jouer dehors en groupe. Le programme de sensibilisation comprend huit événements dans huit villes à travers le Canada.</p>
+                                    <p>Les enfants sont encouragés par un groupe d’animateurs ainsi que les personnages costumés de LA COURSE DES TUQUES / MINI-TUQUES. Les prix de participation contribuent à l’événement tout en stimulant les enfants à poursuivre des activités de plein air à la maison. On y retrouve de nombreuses activités, entre autres, de fausses batailles de boules de neige, des lancés de précision, des courses de luge et courses à obstacles.</p>
+                                    <hr>
+                                    <h3>TOUTES LES DATES DE LA TOURNÉE</h3>
+                                    <p class="center"> 
+                                        <b class="big">Janvier 19-20: </b>TORONTO - Harbourfront Centre <br>
+                                        <b class="big">Janvier 26-27: </b>MONTRÉAL - Fête des neiges <br>
+                                        <b class="big">Février 2-3: </b>HALIFAX - Winterful Waterfront Weekend <br>
+                                        <b class="big">Février 9-10: </b>QUÉBEC - Carnaval de Québec<br>
+                                        <b class="big">Février 16-17: </b>GATINEAU - Winterlude <br>
+                                        <b class="big">Février 23-24: </b>WINNIPEG - Festival du voyageur <br>
+                                        <b class="big">Mars 2-3: </b>BANFF - Sunshine Ski Resort <br>
+                                        <b class="big">Mars 10-11: </b>KELOWNA - Big White Ski Resort
+                                    </p>
+                                    <hr>
+                                    <img src="http://mariefranceprivee.com/LaCourseDesTuques/VenezJouerDehors/assets/racetime.jpg" style="width: 100%; max-width: 513px;" alt="Racetime">
+                                    <p>￼￼￼￼￼Le film LA COURSE DES TUQUES, distribué par eOne/Séville est réalisé par Benoît Godbout, co-réalisé par François Brisson appuyé de Jean-François Pouliot et produit par Marie-Claude Beauchamp (CarpeDiem Film&TV). LA COURSE DES TUQUES est à l’affiche à travers le Canada au cours de l’hiver 2018-2019.</p>
+                                    <p>François les Lunettes et son équipe, avec Sophie comme coureuse, coursent contre le nouveau venu, le ténébreux et prétentieux Zac, et son athlétique cousine Charlie. La super luge conçue par François se désintègre en pleine course. La défaite est amère et François refuse d’admettre qu’il a commis des erreurs. Avec l’aide de ses amis, il réussit à prouver que Zac a triché lors de la course. Il exige une revanche, mais cette fois sur la piste qu’il aura construit. Lorsque François et ses amis réussissent à relever ce défi, Zac réalise que son adversaire est de taille et décide d’ajouter une mise à l’enjeu de la course. Alors que les deux équipes se préparent pour le grand jour, Zac n’a aucun scrupule à tricher de nouveau pour mettre toutes les chances de son côté. Mais François lui réserve quelques surprises.</p>
+                                    <hr>
+                                    <img src="http://mariefranceprivee.com/LaCourseDesTuques/VenezJouerDehors/assets/snowsnaps.jpg" alt="Snowsnaps">
+                                    <p>La série animée LES MINI-TUQUES, inspirée du film LA COURSE DES TUQUES possède une recette bien spécifique: prenez quatre enfants bien différents, ouvrez la porte des grands espaces, couvrez le tout de neige et laissez-les s’amuser! Pour Violet, Tomas, Sami et Kiki, toutes les situations de la vie quotidienne sont bonnes pour s’amuser! Rien ne leur fait plus plaisir que de jouer dehors, particulièrement dans la neige lors d’une belle journée d’hiver. Ensemble, ils organisent une tonne d’activités! À six ans, absolument rien n’est à leur épreuve, et ils n’hésitent jamais à inventer toutes sortes de jeux, peu importe la situation. En plus d’être spontanés, inventifs et rigolos, leurs jeux leur réservent toujours des surprises. Les quatre copains aiment par-dessus tout rire et s’amuser, et en les regardant, on a aussitôt envie de se joindre à eux.</p>
+                                    <p>La série a été vendue dans plusieurs chaînes de télévision à travers le monde: KiKA, Yle, Canal + (France) et Piwi (France) et est actuellement diffusée sur Treehouse, Disney La Chaine et Télétoon.</p>
+                                    <hr>
+                                    <h3>À PROPOS DE CARPEDIEM FILM & TV</h3>
+                                    <p>Fondée au printemps 2004, CarpeDiem est une compagnie de divertissement se spécialisant dans le contenu familial et jeunesse. L’expertise de sa fondatrice Marie-Claude Beauchamp permet à CarpeDiem de se diversifier dans diverses productions, autant par le tournage live-action que le 2D/3D/stéréoscopie ou live-action et CGI combiné. Marie-Claude a consacré plus de 30 ans à la production internationale et a plus de 400 heures de télévision et longs métrages à son actif. Elle a récemment développé le marché de ventes à l’international. Son plus gros projet présentement est le développement de la propriété intellectuelle Snowtime! qui inclus 2 longs métrages d’animation, 1 série télévisée, 10 livres, plus de 100 produits dérivés, 2 expériences muséales, 2 programmes d’activités extérieures et 3 albums de musique incluant le groupe Cool Kids.</p>
+                                    <h3>À PROPOS DU FOND TELUS</h3>
+                                    <p>Le Fonds TELUS finance du contenu exceptionnel qui prône la santé et le mieux-être des Canadiens. La création du Fonds a été possible grâce à la vision de TELUS Corporation et au succès incroyable de TELUS TV avec plus de 1,1 million de clients en Colombie-Britannique, en Alberta et au Québec. Le Fonds est un organisme sans but lucratif géré de façon indépendante certifié par le Conseil de la radiodiffusion et des télécommunications canadiennes (le CRTC) à titre de fonds canadien indépendant de production capable d’administrer les contributions financières versées par TELUS Corporation afin d’encourager la programmation canadienne. Depuis sa création en 2013, le Fonds a distribué plus de 25M$ à plus de 100 projets.</p>
+                                    <h3>À PROPOS DE PARTICIPACTION</h3>
+                                    <p>ParticipACTION est un organisme national à but non lucratif qui aide les Canadiens à s’asseoir moins et à bouger plus. Initialement créé en 1971, ParticipACTION travaille de concert avec ses partenaires, qui sont, notamment, des organisations de sport, d’activité physique et de loisirs, le gouvernement et des sociétés commanditaires, pour faire de l’activité physique une partie essentielle de la vie quotidienne. ParticipACTION est généreusement soutenu par le gouvernement du Canada. Pour plus d’information, veuillez visiter le <a href="https://www.participaction.com/fr-ca" target="_blank">participACTION.com/fr</a>.</p>
+                                    <h3>À PROPOS DE GARANT</h3>
+                                    <p>On vous facilite la tâche : c’est notre objectif, notre passion et notre promesse. Outils non motorisés et accessoires pour le jardinage, la construction et le déneigement, Garant est le chef de file depuis maintes générations. Les professionnels et les particuliers en ont fait leur chouchou depuis les 120 dernières années. Il y a de quoi! Les outils Garant se démarquent par leurs caractéristiques pratiques et innovantes.</p>
+                                    <hr>
+                                    <br>
+                                    <h3>INFORMATION</h3>
+                                    <p class="big center">Marie-France Privée | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a> | 514-814-7844</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/LaCourseDesTuques/VenezJouerDehors/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; text-align: center;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">Si vous ne voulez plus recevoir de courriel de notre part,<br><a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.</p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
