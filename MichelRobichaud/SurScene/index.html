@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 19px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            margin-top: 20px;
+            line-height: normal;
+            }
+
+        h2 {
+            text-align: center;
+			font-size: 26px;
+            line-height: 30px;
+            }
+
+        h3 {
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #c8a96f;
+            text-decoration: none;
+        }
+        
+        .color {
+            color: #c8a96f;
+        }
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+    };
+        
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#007da2" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #007da2;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/MichelRobichaud/SurScene/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/MichelRobichaud/SurScene" target='_blank'><img src="http://mariefranceprivee.com/MichelRobichaud/SurScene/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                    <h1><b class="color">MICHEL ROBICHAUD</b><br><small><b><i>TOURNÉE DE SPECTACLES</i></b></small><br></h1>
+                                    <p class="center big"><b>Un mélange de musique, humour et...de poésie Robichaud</b></p>
+                                    <hr>
+                                    <p>Montréal, 26 février 2019 - Michel Robichaud prendra la route cet hiver pour présenter les pièces de son récent album <i>Tout refaire</i>. Auteur-compositeur-interprète, l’artiste attire le public avec humour, sensibilité et vérité dans son univers ludique aux mille questions. Avec son jeu de guitare sensible et ses textes inspirés, il dépeint des sujets universels du quotidien. Dans une mise en scène d’Edgar Bori, Michel est accompagné de ses complices Jessica-Charlie Latour- Marleau (voix, piano, violon) et Gabriel Hardy (basse).</p>
+                                    <p>L’album <i>Tout refaire</i> est un voyage entouré de sons tantôt électriques, tantôt acoustiques, avec des mélodies attachantes et accrocheuses et l’engagement humoristique qu’on lui connait . Un grand cru de Michel Robichaud, un album qui illustre son talent de manière irréfutable. Il faut maintenant le voir sur scène...</p>
+                                    <hr>
+                                    <h3 class="color">SPECTACLES</h3>
+                                        <p class="center"><b>2 mars - Montréal</b><br>Week-end de la chanson Québecor - Salle Claude-Léveillée de la Place des Arts</p>
+                                        <p class="center"><b>20 mars - Repentigny</b><br>5 à 7 Découvertes au Centre d’art Diane-Dufresne</p>
+                                        <p class="center"><b>22 mars - Trois-Rivières</b><br>Nord-Ouest Café</p>
+                                        <p class="center"><b>19 avril - Gatineau</b><br> Grange de la Gatineau</p>
+                                    <hr>
+                                    <p>À l’automne dernier, on se rappelle que c’était les élections! Un sujet incontournable pour Michel qui en profite pour lancer un extrait et vidéoclip, <b><i>Gisèle</i></b>, qui obtient un succès radio et un nombre considérable de visionnements sur Youtube. <b><i>Gisèle</i></b> se veut un clin d’œil à la petite Germaine en nous qui voudrait dont faire tourner les choses à sa façon, avec sa seule logique comme clé d’un monde meilleur.</p>
+                                    <hr>
+                                    <h3><b class="color">Vidéoclip Gisèle</b><br><small><i>Réalisé par Gisèle</i></small> </h3>
+                                    <!-- <a href="http://mariefranceprivee.com/MichelRobichaud/SurScene" target='_blank'><img src="http://mariefranceprivee.com/MichelRobichaud/SurScene/assets/PlayBtn.jpg" alt="Vidéoclip Whatever no matter"></a> -->
+                                    <iframe width="100%" height="293" src="https://www.youtube.com/embed/jB84XpGx-iE?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <hr>
+                                    <p>Après le succès de <i>Beau mystère</i>, son premier disque paru en 2014, Michel Robichaud a enchaîné des tournées durant presque 3 années au cours desquelles il a présenté plus de 250 spectacles. Lauréat du 46<sup>e</sup> Festival international de la chanson de Granby en 2014, Michel Robichaud y reçoit aussi le prestigieux prix Robert Léger pour la qualité de la langue et l’originalité de sa chanson <i>Beau Mystère</i>. La même année, il récolte aussi le Prix du public, le Prix Artisti de la meilleure interprétation et le Prix Pauline-Julien pour la prise de parole au Festival en chanson de Petite-Vallée 2014. Ajoutons que récemment, le Conseil de la culture des Laurentides lui a décerné le prix Excellence pour la qualité poétique de ses textes et pour souligner le rayonnement de sa carrière en pleine ascension.</p>
+                                    <hr>
+                                    
+                                    
+                                    <h3>Suivez les capsules de Michel Robichaud <br> <small><a href="https://www.facebook.com/MichelRobichaudMusique" target="_blank">www.facebook.com/MichelRobichaudMusique</a></small>
+                                    </h3>
+                                    <hr>
+
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                        <a href='https://michelrobichaud.me' target='_blank'>www.michelrobichaud.me</a>
+                                   </h3>
+                                   <hr>
+                                <p style="text-align: center;"> 
+                                    <b>Relations de presse : Torpille</b><br>
+                                    <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie-france@torpille.ca">marie-france@torpille.ca</a>
+                                </p>
+                                <p style="text-align: center;"> 
+                                    <b>Promotion radio : Torpille</b><br>
+                                    <b>Joanick Tétreault</b> | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                    <b>Jean-François Blanchet</b> | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
+                                </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/MichelRobichaud/SurScene/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: white;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
