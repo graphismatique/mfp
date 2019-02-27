@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 19px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            margin-top: 20px;
+            line-height: normal;
+            }
+
+        h2 {
+            text-align: center;
+			font-size: 26px;
+            line-height: 30px;
+            }
+
+        h3 {
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #d68828;
+            text-decoration: none;
+        }
+        
+        .color {
+            color: #d68828;
+        }
+        
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#007da2" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #007da2;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper" target='_blank'><img src="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                    <h1><b class="color">Le Winston Band</b><br><small><b><i>Enfirouaper</i></b></small><br></h1>
+                                    <p class="center">Nouvel extrait de l’album<br>Zig Zag Zydeco Zoo, disponible dès le 8 mars 2019</p>
+                                    <hr>
+                                    <h1><b class="color">Le Winston Band & Le Mardi gras</b><br><small><b><i>Lancement 5 mars 19h</i></b></small><br></h1>
+                                    <p class="center">SALA ROSSA (4848 boul St-Laurent, Montréal)<br>Le Winston Band perpétue sa tradition annuelle du Mardi gras.<br>Le groupe nous prépare un lancement festif et mémorable...rempli de surprises.</p>
+                                    <p class="center">C’est un rendez-vous !</p>
+                                    <hr>
+                                    <p><b>Le Winston Band</b> présente <b><i>Enfirouaper</i></b>, un second extrait tiré de l’album <b>Zig Zag Zydeco Zoo</b>, qui paraîtra le 8 mars prochain. Comme la tradition le veut, <b>Le Winston Band</b> fêtera à coup sûr le <b>Mardi gras</b> encore une fois cette année ! Le groupe en profitera pour lancer son deuxième album dans cette ambiance folklorique et festive qui fait sa réputation depuis 2014.</p>
+                                    <p><b><i>Enfirouaper</i></b> est une pièce rassembleuse inspirée des racines de l’expression québécoise qui, selon la légende, viendrait de l’anglais « in fur wrapped » qui signifie « enveloppé dans la fourrure ». C’est une histoire de séduction qui se transforme en relation de domination. Les trajectoires de vie bifurquent : parfois on prend un chemin pour améliorer sa destinée mais le résultat obtenu n’est pas toujours celui escompté. En chœur, les gars réclament « Finies les jobines de chien », expression tirée du roman d’Yves Beauchemin L’Enfirouapé, qui exprime bien ce désir de changement et d’ascension sociale, mais il faut toutefois faire attention à ne pas se faire embobiner...</p>
+                                    <hr>
+                                    <a href="http://torpille.ca/2019/01/le-winston-band-nouvel-extrait-/" target="_blank"><img src="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/assets/PlayBtn.jpg" alt="Écoutez l'extrait Il Neige"></a>
+                                    <hr>
+                                    <p><b>Le Winston Band</b> est sur le point de lancer son deuxième album Zig Zag Zydeco Zoo. Le « zydeco québécois » qui le caractérise, est un mélange entre l’identité des cinq musiciens montréalais et un style dansant axé sur l’accordéon et le frottoir (zydeco), né chez les Créoles de Louisiane. Tout en se distinguant par cette influence peu représentée au Québec, <b>Le Winston Band</b> s’inscrit dans une lignée folk bien de chez nous et montre que sa musique a de solides fondations, soit les traditions riches et diversifiées qu’il entremêle.
+                                    <hr>    
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                        <a href='https://www.lewinstonband.com' target='_blank' >www.lewinstonband.com</a>
+                                        <a href="https://www.facebook.com/LeWinstonBand/" target="_blank"> <img src="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/assets/facebook.png" height="25px" alt="Facebook" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                        <a href="https://www.instagram.com/lewinstonband/" target="_blank"> <img src="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/assets/instagram.png" height="25px" alt="Instagram" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                   </h3>
+                                   <hr>
+                                <p style="text-align: center;"> 
+                                    <b>Relations de presse</b><br>
+                                    <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie-france@torpille.ca">marie-france@torpille.ca</a>
+                                </p>
+                                <p style="text-align: center;"> 
+                                    <b>Promotion radio</b><br>
+                                    <b>Jean-François Blanchet</b> | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
+                                    <b>Joanick Tétreault</b> | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a>
+                                </p>
+                                <p style="text-align: center;"> 
+                                    <b>Gérance et spectacles</b><br>
+                                    <b>Guillaume Ruel</b> | 514-887-7835 | <a href="mailto:ruelgui@gmail.com">ruelgui@gmail.com</a>
+                                </p>
+                                <hr> 
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/LeWinstonBand/Enfirouaper/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: white;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
