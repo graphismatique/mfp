@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin: 0px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 22px;
+            }
+
+        h3 {
+            margin: 25px 0px 0px 0px;
+            font-weight: normal;
+            color: #226e9c;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #226e9c;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        
+        .blue {
+            color: #226e9c;
+        }
+        a {
+            color: #226e9c;
+            
+        }
+        a:hover {
+            color: #c84cc4;
+        }  
+        sup {
+        font-size: 0.60em;
+        vertical-align: super;
+        line-height: 0;
+        };  
+       
+    </style>
+</head>
+<body width="100%" bgcolor="#e7f1fb" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #e7f1fb;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <!-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/LaCourseDesTuques/BandeAnnonce/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/Snowsnaps/WinterfulWaterfrontWeekend/Winnipeg/" target="blank"><img src="http://mariefranceprivee.com/Snowsnaps/WinterfulWaterfrontWeekend/assets/header.jpg" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    <hr>
+                                    <h1>COME PLAY OUTSIDE WITH US!<br><small>Banff March 2 - 3<br><span class="blue">Sunshine Ski Resort, 9 a.m. – 4 p.m.</span></small></h1>
+                                    <hr>
+                                    <p>CarpeDiem Film & TV in collaboration with ParticipACTION, TELUS FUND and GARANT INC invite you to continue the adventure of the critically acclaimed movie RACETIME, presented by eOne, which has already grossed 2.3 million dollars at the Canadian box office.</p>
+                                    <p>RACETIME will take audiences on an outdoor journey across Canada with the film’s characters, where competitions and contests will involve them in outdoor physical activities. Just like in the film, the activities will help them discover the pleasure of playing outdoors as a group. The outreach program will consist of 8 events in 8 cities across Canada.</p>
+                                    <p>Children will be encouraged in these activities by the RACETIME/SNOWSNAPS-costumed characters and a group of facilitators. Participation prizes, related to outdoor play, will contribute to the event while stimulating kids to pursue outdoor activities at home. Among the many activities scheduled are sled races, a pretend snowball fight, precision snowball throwing and a relay race.</p>
+                                    <hr>
+                                    <h3>RACETIME/SNOWSNAPS TOUR</h3>
+                                    <p class="center"> 
+                                        <b class="big">January 19-20: </b>TORONTO - Harbourfront Centre <br>
+                                        <b class="big">January 26-27: </b>MONTREAL - Fête des neiges <br>
+                                        <b class="big">February 2-3: </b>HALIFAX - Winterful Waterfront Weekend <br>
+                                        <b class="big">February 9-10: </b>QUEBEC CITY - Carnaval de Québec<br>
+                                        <b class="big">February 16-17: </b>GATINEAU - Winterlude <br>
+                                        <b class="big">February 23-24: </b>WINNIPEG - Festival du voyageur <br>
+                                        <b class="big">March 2-3: </b>BANFF - Sunshine Ski Resort <br>
+                                        <b class="big">March 11-12: </b>KELOWNA - Big White Ski Resort
+                                    </p>
+                                    <hr>
+                                    <img src="http://mariefranceprivee.com/Snowsnaps/WinterfulWaterfrontWeekend/assets/racetime.jpg" style="width: 100%; max-width: 513px;" alt="Racetime">
+                                    <p>The movie RACETIME is distributed by eOne, directed by Benoit Godbout, co-directed by François Brisson, with the collaboration of Jean-François Pouliot and produced by Marie-Claude Beauchamp (CarpeDiem Film & TV). RACETIME is in theatres across Canada during the winter 2018-2019 season.</p>
+                                    <p>Frankie-Four-Eyes and his team, including Sophie as the driver, take on the newcomers: the mysterious and conceited Zac and his athletic cousin Charly. The fantastic sled designed by Frankie disintegrates right before crossing the finish line. It is a bitter loss for Frankie, who refuses to accept that he might have made some building mistakes. Together with his friends, he manages to prove that Zac cheated during the race. Frankie demands a rematch; which Zac accepts on condition that Frankie build an entirely new race track. Frankie and his friends build a spectacular race track. Zac realizes he is up against a worthy opponent, so he raises the stakes even higher by cornering Frankie into adding a bet. As the two teams prepare for race day, Zac has no scruples about cheating even more to tilt the outcome of the race in his favour. But Frankie and his team have a few surprises of their own in store for him.</p>
+                                    <hr>
+                                    <img src="http://mariefranceprivee.com/Snowsnaps/WinterfulWaterfrontWeekend/assets/snowsnaps.jpg" height="60px" alt="Snowsnaps">
+                                    <p>SNOWSNAPS comes to the small screen as part of a well-established, highly acclaimed RACETIME movie. SNOWSNAPS has a very specific recipe: take four very different little kids, open the gate to the great outdoors, cover everything with snow, and let ‘em go! In each episode, the four stars of SNOWSNAPS are confronted with a challenge. Overcoming the challenge becomes a game, but the game always gets totally out of hand and leads to a surprise ending.</p>
+                                    <p>Each character has their own distinct nature based on comic archetypes: Violet the Scoundrel, Tomas the Innocent, Sami the Fool, and Kiki the Soldier. Putting any two of these classic comedy types together instantly creates friction and fun – with four, there’s even more!</p>
+                                    <p>The series has been sold to several TV channels around the world: KiKA, Yle, Canal+ (France) and Piwi (France) and is currently on Treehouse TV, the French Disney channel and Teletoon.</p>
+                                    <hr>
+                                    <h3>ABOUT CARPEDIEM FILM & TV</h3>
+                                    <p>Created in the spring of 2004, CARPEDIEM is a media entertainment company which focuses primarily on the family market. The skills and depth of experience of its founder Marie-Claude Beauchamp allows CarpeDiem to go from live action productions to 2d/3d/stereoscopic animation to productions blending live action and CGI (GRAND STAR, MY LIFE ME). Whether feature films, TV series, mobisodes, web or mobile games, CarpeDiem delivers top-quality programs that satisfy the most demanding viewers from three years old to one hundred three. Since eOne/Seville released LA GUERRE DES TUQUES 3D/ SNOWTIME, its second animated feature film which opened in theatres in November 2015, the film has received critical and popular success, dominating the Quebec market. US distribution and theatrical release were secured and the movie was picked for screening at the Sundance Festival. There are more than 100 ancillary products tied to the film, ranging from toys to clothing to books to apps and games. A CD and soundtrack recording featuring Celine Dion, Simple Plan, Walk off the Earth and other artists has been released worldwide by Sony Records. CarpeDiem has a full slate of family feature films and TV series, both in development and pilots, including BUTTERFLY TALE (Canada), ARJUNA (Canada/France), CHRISTMAS CHAOS (Canada), as well as SNOWSNAPS, an animated television series based on SNOWTIME!, as well as RACETIME, launched in December 2018. CarpeDiem hopes to breathe new life into the Quebec animation industry.</p>
+                                    <h3>ABOUT TELUS FUND</h3>
+                                    <p>TELUS Fund finances exceptional content that promotes the health and well-being of Canadians. The Fund is made possible through the vision of TELUS Corporation and the incredible success of TELUS TV, with more than 1.1 million customers in British Columbia, Alberta and Quebec. The Fund is an independently governed, not-for-profit corporation certified by the Canadian Radio-television and Telecommunications Commission as a Canadian Independent Production Fund eligible to administer TELUS Corporation’s financial contributions in support of Canadian programming. Since launching in 2013, the Fund has committed over $25M to more than 100 projects.</p>
+                                    <h3>ABOUT PARTICIPACTION</h3>
+                                    <p>ParticipACTION is a national non-profit organization that helps Canadians sit less and move more. Originally established in 1971, ParticipACTION works with its partners, which include sport, physical activity, recreation organizations, government and corporate sponsors, to make physical activity a vital part of everyday life. ParticipACTION is generously supported by the Government of Canada. For more information, please visit <a href="https://www.participaction.com/en-ca" target="_blank">participACTION.com</a>.</p>
+                                    <h3>ABOUT GARANT</h3>
+                                    <p>Making the job easier: a goal, a passion, a promise. Throughout the decades, Garant has been a leading manufacturer and marketer of non-powered gardening tools and accessories, construction tools and snow removal tools. Acknowledged for the past 120 years amongst professionals and homeowners, our tools stand apart for their practical and innovative features.</p>
+                                    <hr>
+                                    <br>
+                                    <h3>INFORMATION</h3>
+                                    <p class="big center">Marie-France Privée | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a> | 514-814-7844</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/Snowsnaps/WinterfulWaterfrontWeekend/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; text-align: center;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                           <a href="mailto:marie@mariefranceprivee.com">click here</a> to unsubscribe.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
