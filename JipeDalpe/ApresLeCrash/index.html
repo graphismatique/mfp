@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+        }
+        .center  {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            color: #8c878b;
+            margin: 20px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 0px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 20px;
+            font-weight: normal;
+            }
+
+        h3 {
+            font-weight: normal;
+            text-align: left;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #8c878b;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#47483a" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #47483a;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                    <h1>JIPÉ DALPÉ</h1>
+                                    <h2>APRÈS LE CRASH <br> <small>NOUVEL ALBUM DISPONIBLE LE 12 AVRIL</small> </h2>
+                                    <hr>
+                                    <p>La fébrilité et l’effervescence sont à leur comble pour <b>Jipé Dalpé</b> qui dévoilera son tout nouvel album <b><i>Après le crash</i></b> le <b>12 avril prochain</b>. C’est un grand retour pour l’auteur-compositeur-interprète multi-instrumentiste qui nous présentait en 2015 son EP L’homme allumette, fort salué par la critique.</p>
+                                    <p>Pour son 3e album, le chanteur-trompettiste s’est entouré de collaborateurs de premier ordre, à commencer par <b>Jean-François Lemieux</b> qui assure la réalisation. <b>Ariane Moffatt</b> coréalise 3 pièces en plus de signer la musique de 2 chansons, dont une où elle marie magnifiquement sa voix à celle de Jipé (Combien d’étoiles). On y retrouve également comme complices <b>Marie-Pierre Arthur, Olivier Langevin, François Lafontaine, Pierre Fortin</b> et <b>David Goudreault</b>. Plus rock, direct et incisif que ses disques précédents, tout en gardant ce qu’il faut de subtilité et sensibilité, les 11 pièces nous catapultent dans l’univers singulier de l’artiste, où ses mots, sa trompette et ses arrangements de cuivres font résonner tout le talent et l’originalité de l’artiste. Après son crash, Jipé nous livre un album chargé d’émotions, un électro-choc de sincérité et de résilience où les textes et le climat musical reflètent indéniablement un tournant majeur dans sa vie.</p>
+                                    <p><b><i>Après le crash</i></b> est résolument l’album le plus significatif et abouti de <b>Jipé</b>, qui ne tient plus en place à l’idée de le partager enfin, pour qu’il suive le chemin qui mène des oreilles au cœur.</p>
+                                    <p><i>« Cet album s’est construit sur un glissement de terrain. Quelque part entre le trash du crash et les racines d’un trèfle à quatre feuilles... » - Jipé Dalpé</i></p>
+                                    <hr>
+                                    <h2>INVITATION<br><small>LANCEMENT APRÈS LE CRASH</small></h2>
+                                    <p class="center"><b>15 AVRIL 17H00 AU MINISTÈRE</b> <br><i>(4521 boulevard Saint-Laurent, Montréal)</i></p>
+                                    <p class="center"><b>9 MUSICIENS SUR SCÈNE!</b><br>Un cocktail spécialement créé pour l’événement sera servi sur place</p>
+                                    <p class="center">RSVP : <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a></p>
+                                    <hr>
+                                    <h2>PREMIER EXTRAIT ET VIDÉOCLIP <i>L’ATTENTAT</i></h2>
+                                    <p>C’est à travers une collaboration des plus éclatantes avec <b>Ariane Moffatt</b> (qui signe la musique et coréalise avec Jean-François Lemieux) que <b>Jipé Dalpé</b> présente <b><i>L’attentat</i></b>.</p>
+                                    <!-- <a href="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash" target='_blank'><img src="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash/assets/PlayBtn.jpg" alt="Vidéoclip Whatever no matter"></a> -->
+                                    <iframe width="100%" height="293" src="https://www.youtube.com/embed/mZ_7J6zS0yo?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    <!-- <a href="https://www.facebook.com/JipeDalpe/" target="_blank"><img src="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash/assets/facebook.png" height="30px" alt="facebook"></a>  -->
+                                    <!-- <a href="https://www.instagram.com/jipedalpe/" target="_blank"><img src="http://mariefranceprivee.com/JipeDalpe/ApresLeCrash/assets/instagram.png" height="30px" alt="instagram"></a> -->
+                                    <hr>
+                                    <br>
+                                    <p class="center"> 
+                                        <b>Relations de presse</b><br>
+                                        Marie-France Privée | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p class="center"><b>Promotion radio : Torpille</b><br>
+                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        Jean-François Blanchet | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Gérance</b><br>
+                                        Sébastien Charest | 514-248-8979 | <a href="mailto:sebcharest@gmail.com">sebcharest@gmail.com</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Spectacles : Groupe Artifice</b><br>
+                                        Gus Boilard | 418-255-8487 | <a href="mailto:gus@artifice.live">gus@artifice.live</a>
+                                    </p>
+
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <h2 class="left"><b>APRÈS LE CRASH EN QUELQUES MOTS...</b></h2>
+                                    
+                                    <h3>L’ATTENTAT<br><small><b>Paroles :</b> Jipé Dalpé / <b>Musique :</b> Ariane Moffatt</small></h3>
+                                    <p>Pied de nez à la grisaille ambiante et au climat social hostile. C’est une grenade chargée d’espoir sur la peur et l’amertume qui plane au-dessus de nos têtes à chaque petite fin du monde que les nouvelles nous rapportent. En riposte aux gestes violents et fanatiques, le défi est de ne pas céder à la peur ni à l’envie de prendre les armes et de faire contrepoids à l’intolérance en aimant plus fort.</p>
+                                    <hr>
+                                    <h3>PAR LES CORNES<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>La vie va vite. C’est facile de se fondre dans le quotidien et d’y dormir au gaz. Quand elle tourne en rond et semble s’essouffler, faut parfois prendre son destin par les cornes, provoquer le changement, vivre plus fort, plus vrai, pour rester en mouvement et retrouver le contraire de l’ennui.</p>
+                                    <hr>
+                                    <h3>LAST CALL<br><small><b>Paroles :</b> Jipé Dalpé / <b>Musique :</b> Charles Robert</small></h3>
+                                    <p>On a tous des gens autour de nous qui nous « tirent du jus », et vers le bas. Des êtres énergivores qui nous aspirent dans leur tourbillon de négativisme. Ils ont le don de voir invariablement la vie en noir-chaos, en tournant chaque situation en drame apocalyptique! Cette chanson est un ras-le-bol des « chialeux de service », une gifle amicale et bienveillante pour se défouler et dire : « Ta gueule, la vie est belle! Arrête de râler et tout va mieux aller »!</p>
+                                    <hr>
+                                    <h3>AVANT TES YEUX<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>Chanson de nuit, de bar, d’excès, d’alcool et autres rock’n roll. Récit d’une flamme amoureuse naissante imprévue et improbable qui scintille au bout du bar des cœurs brisés.</p>
+                                    <hr>
+                                    <h3>LE SOUFFLE ET L’INCENDIE<br><small><b>Paroles :</b> David Goudreault / <b>Musique :</b> Jipé Dalpé</small></h3>
+                                    <p>Le souffle et l’incendie nous confirme que la plume toujours juste de Goudreault (auteur, poète, slameur et chroniqueur), mélangée à la musique imagée et engagée de Dalpé, ça ne peut donner qu’un feu d’artifice créatif!</p>
+                                    <hr>
+                                    <h3>LAC RENAUD<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>On a beau vivre à deux sous un même toit, y’a des moments où on se perd de vue. On vit en parallèle, sans se voir. Y faut parfois une échappatoire, un refuge, un « Lac Renaud » pour faire le point, l’état des lieux. Arrêter le temps et respirer. Se perdre ou se retrouver...</p>
+                                    <hr>
+                                    <h3>L’ÉDEN À SES PIEDS<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>L’histoire d’une amie à qui rien ne semble jamais sourire. Personne ne comprend pourquoi. Belle, brillante, intelligente, généreuse. Pourtant, elle ne fait qu’accumuler les échecs. Et lui reste là à chercher avec elle une piste, un sentier, un rayon de lumière. Il « espère qu’le vent va tourner ». Juste pour elle, il croit encore « qu’il existe un autre décor ».</p>
+                                    <hr>
+                                    <h3>DU MUSCLE<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>Après le crash, Jipé Dalpé a passé des mois, en fait 2-3 années, à se reconstruire le corps et l’esprit qui ne répondaient plus à rien comme avant. À travers cette épreuve, il a réalisé à quel point la vie pouvait être rough et fragile et que pour y faire face, il faut énormément de force, de détermination et du muscle.</p>
+                                    <hr>
+                                    <h3>COMBIEN D’ÉTOILES (avec Ariane Moffatt)<br><small><b>Paroles :</b> Jipé Dalpé / <b>Musique :</b> Ariane Moffatt</small></h3>
+                                    <p>Une deuxième collaboration avec Ariane Moffatt qui, en plus d’avoir composé la musique, chante avec Jipé Dalpé sur la piste. C’est une réflexion toute simple d’Humain face à la vie et ses rêves. La chanson nous questionne à savoir si la route, les efforts, les obstacles et les embûches en valent réellement la chandelle. « On creuse pour combien d’étoiles ? »</p>
+                                    <hr>
+                                    <h3>APRÈS LE CRASH<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>C’est la chanson titre de l’album. La pièce maitresse, la pierre angulaire. Celle qui, par la force des choses, a donné le ton à l’album ainsi qu’à tout le processus créatif. De l’accident de voiture de Jipé jusqu’à la remise sur pied et le retour à la création. Aussi malheureux et regrettable que cet incident a pu l’être, il est indiscutable que l’album n’aurait jamais été le même sans cette épreuve.</p>
+                                    <hr>
+                                    <h3>COMMOTION<br><small><b>Paroles et musique :</b> Jipé Dalpé</small></h3>
+                                    <p>Pièce instrumentale. C’est l’extension naturelle de la chanson « Après le crash ». Jipé a voulu illustrer et recréer en musique, les effets de la commotion cérébrale à la suite de l’impact de l’accident. Plutôt que d’utiliser les mots, Jipé a choisi de simplement laisser la musique décrire la scène et l’état.</p>
+                                    <hr>                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #ffffff;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
