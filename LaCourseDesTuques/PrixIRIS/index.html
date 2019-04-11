@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin: 0px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 22px;
+            }
+
+        h3 {
+            margin: 25px 0px 0px 0px;
+            font-weight: normal;
+            color: #226e9c;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #226e9c;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        
+        .blue {
+            color: #226e9c;
+        }
+        a {
+            color: #226e9c;
+            
+        }
+        a:hover {
+            color: #c84cc4;
+        }  
+        sup {
+        font-size: 0.60em;
+        vertical-align: super;
+        line-height: 0;
+        };  
+       
+    </style>
+</head>
+<body width="100%" bgcolor="#e7f1fb" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #e7f1fb;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <!-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/LaCourseDesTuques/BandeAnnonce/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/LaCourseDesTuques/PrixIRIS/" target="blank"><img src="http://mariefranceprivee.com/LaCourseDesTuques/PrixIRIS/assets/header.jpg" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; color: #555555;">                                    
+                                    <!--    MARKDOWN START HERE   -->
+                                    <hr>
+                                    <h1>EN NOMINATION AU PRIX IRIS POUR «&#8239;MEILLEUR FILM DE L’UNIVERS&#8239;»  </h1>
+                                    <hr>
+                                    <p>Montréal, le 11 avril 2019 - <b>CarpeDiem Film&TV</b> est fière d’annoncer la nomination de <b><i>La Course des tuques</i></b> au <b>Prix Iris</b> dans la catégorie <b><i>«&#8239;Meilleur film de l’Univers&#8239;»</i></b>.</p>
+                                    <p>Rappelons que le film a franchi le cap du <b>2.5 millions</b> et a été vendu à ce jour, dans plus de <b>200 pays</b>.</p>
+                                    <p><b><i>La Course des tuques</i></b> a également récolté deux nominations aux Prix Écrans (Canadian Screen Awards) dans la catégorie Meilleur montage sonore (Christian Rivest, Stephan Bergeron, Guy Pelletier, Guy Francoeur, Antoine Morin, Simon Pelletier et Thibault Quinchon) et Meilleure adaptation (Paul Risacher, Claude Landry, Maxime Landry).</p>
+                                    <p><b><i>La Course des tuques</i></b> est maintenant disponible en <b>Blu-Ray</b>, <b>DVD</b> et <b>vidéo sur demande</b>. Distribué par les Films Séville, une filiale d'eOne, <b><i>La Course des tuques</i></b> est réalisé par <b>Benoit Godbout</b>, coréalisé par <b>François Brisson</b>, appuyé de <b>Jean-François Pouliot</b> à titre de consultant à la réalisation et à la direction photo et produit par <b>Marie-Claude Beauchamp</b> (CarpeDiem Film&TV). Hélène Bourgeois Leclerc, Gildor Roy, Ludivine Reding, Mehdi Bousaidan, Sophie Cadieux, Mariloup Wolfe, Anne Casabonne, Catherine Trudeau, Nicholas Savard L’Herbier et Sébastien Reding complètent la distribution.</p>
+                                    <hr>
+                                    <h3>À PROPOS DE CARPEDIEM</h3>
+                                    <p>Fondée au printemps 2004, CarpeDiem est une compagnie de divertissement se spécialisant dans le contenu familial et jeunesse. L’expertise de sa fondatrice <b>Marie-Claude Beauchamp</b> permet à CarpeDiem de se diversifier dans diverses productions, autant par le tournage live-action que le 2D/3D/stéréoscopie ou live-action et CGI combiné. Marie-Claude a consacré plus de 30 ans à la production internationale et a plus de 400 heures de télévision et longs métrages à son actif. Elle a récemment développé le marché de ventes à l’international. Son plus gros projet présentement est le développement de la propriété intellectuelle La Course des tuques qui inclus 2 longs métrages d’animation, 1 série télévisée (Les mini-tuques), 10 livres, plus de 100 produits dérivés, 2 expériences muséales, 2 programmes d’activités extérieures et 3 albums de musique incluant le groupe Cool Kids.</p>
+                                    <hr>
+                                    <img src="http://mariefranceprivee.com/LaCourseDesTuques/PrixIRIS/assets/racetime.jpg" style="width: 100%; max-width: 513px;" alt="Racetime">
+                                    <hr>
+                                    <h3>RELATIONS DE PRESSE</h3>
+                                    <p class="big center"><b>CarpeDiem</b><br>Marie-France Privée | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a> | 514-814-7844</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/LaCourseDesTuques/PrixIRIS/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; text-align: center;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">Si vous ne voulez plus recevoir de courriel de notre part,<br><a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.</p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
