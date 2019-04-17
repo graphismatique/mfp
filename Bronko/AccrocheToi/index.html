@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+        }
+        b {
+            color: #bc692c;
+        }
+        .center  {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            color: #bc692c;
+            margin: 20px 0px 0px 0px;
+            line-height: normal;
+            font-size:35px;
+            }
+
+        h2 {
+            color: #8c878b;
+            margin: 15px 0px 15px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 20px;
+            font-weight: normal;
+            }
+
+        h3 {color: #73775d;
+            font-weight: normal;
+            text-align: left;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #bc692c;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #5b5e4b;
+        }
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+    };
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#2a1a0c" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #2a1a0c;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/Bronko/AccrocheToi/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/Bronko/AccrocheToi/" target="_blank"><img src="http://mariefranceprivee.com/Bronko/AccrocheToi/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #303030;">                                    
+                                    <h1> <small>UN PREMIER ALBUM POUR </small>BRONKO</h1>
+                                    <h2>ACCROCHE-TOI<br> <small>LANCEMENT 23 AVRIL 17H À L’ASSOMMOIR</small> </h2>
+                                    <hr>
+                                    <p>Un nouveau groupe débarque dans le paysage musical québécois. Formé de Cédric Paquet et Simon Therien Dubois, le duo pop-folk <b>Bronko</b> nous offre leur tout premier album, <b><i>Accroche-toi</i></b>.</p>
+                                    <p>Le premier extrait <b><i>Je regrette rien</i></b> lancé à l’automne dernier, a fait une entrée remarquée sur les ondes radiophoniques à travers la francophonie. Cela a d’ailleurs permis au groupe de se démarquer et d’être sélectionné comme <b>Future Star iHeart Radio</b> du mois de novembre 2018.</p>
+                                    <hr>
+                                    <a href="http://torpille.ca/2018/09/bronko-premier-extrait-je-regrette-rien/" target="_blank"><img src="http://mariefranceprivee.com/Bronko/AccrocheToi/assets/PlayBtn.jpg" alt="Écoutez l'extrait"></a>
+                                    <hr>
+                                    <p>Réalisé par <b>Jeff Grenier</b> Vilain Pingouin, David Jalbert, Hugo Lapointe, Mathieu Provençal, Charles Dubé, Bruno Labrie, Marie-Ève Côté), l’album <b><i>Accroche-toi</i></b> réunit 12 pièces écrites et composées par le duo, sous la direction musicale de <b>David Jalbert</b>.</p>
+                                    <p>Passionnés des arts et de la musique, les jeunes hommes chantent ensemble depuis le début de l’adolescence. À travers les années, Cédric et Simon, deux jeunes de Terrebonne ayant grandi dans le domaine Bronco de Laplaine, ont développé une complicité musicale indéniable et ont lié leurs forces pour écrire ce tout premier album. <b><i>Accroche-toi</i></b> sort sous <b>Goliath musique</b>, l’étiquette de l’auteur-compositeur et interprète <b>David Jalbert</b>.</p>
+                                    <p>Dès la première rencontre, David a su qu’il voulait travailler à développer ce duo prometteur. <i>« En 10 ans de carrière, je n'ai jamais autant été séduit! Les gars ont un véritable talent pour écrire des refrains accrocheurs. Ça fait très longtemps que les gars suivent ma carrière et qu’ils désiraient me faire écouter leur matériel. J’ai fini par les inviter chez moi et j’ai eu un coup de foudre instantané...humain et musical! »</i> <b>David Jalbert</b>.</p>
+                                    <p><b>Accroche-toi</b> introduit l’univers de ce nouveau groupe qui ne tardera pas à tracer son chemin. Disponible le 26 avril 2019 en magasin et sur toutes les plateformes numériques.</p>
+                                    <hr>
+                                    <h2><b>LANCEMENT 23 AVRIL 17H À L’ASSOMMOIR</b> <br><small><a href="https://goo.gl/maps/fT7N2M6RNarfifwR6" target="_blank">211 rue Notre-Dame Ouest</a></small><br>RSVP : <a href="mailto:marie-france@torpille.ca">marie-france@torpille.ca</a></h2>
+                                    <br>
+                                    <hr>
+                                    <h2><b><a href="https://www.facebook.com/Bronkomusique/" target="_blank">facebook.com/Bronkomusique/</a></b></h2>
+                                    <hr>
+                                    <br>
+                                    <p class="center"> 
+                                        <b>Relations de presse : Torpille</b><br>
+                                        Marie-France Privée | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p class="center"><b>Promotion radio : Torpille</b><br>
+                                        Jean-François Blanchet | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
+                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        Catherine Brunet | 579-721-3212 | <a href="mailto:info@torpille.ca">info@torpille.ca</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #ffffff;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
