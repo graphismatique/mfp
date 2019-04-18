@@ -139,6 +139,9 @@
         .left {
             text-align: left;
         }
+        .red{
+            color: #a81c27;
+        }
         h1 {
             text-align: center;
             color: #a81c27;
@@ -191,6 +194,19 @@
         a:hover {
             color: #6d131b;
         }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
         sup {
         font-size: 0.83em;
         vertical-align: super;
@@ -199,8 +215,8 @@
         
     </style>
 </head>
-<body width="100%" bgcolor="#a81c27" style="margin: 0; mso-line-height-rule: exactly;">
-    <center style="width: 100%; background: #a81c27;">
+<body width="100%" bgcolor="#1d1d1d" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #1d1d1d;">
         <!--
             Set the email width. Defined in two places:
             1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
@@ -243,7 +259,7 @@
                                     <h1>PAUL CARGNELLO<br><small><i>PROMISES</i></small></h1>
                                     <h2>NOUVEL ALBUM DISPONIBLE LE 3 MAI</h2>
                                     <hr>
-                                    <p>L’artiste montréalais <b>Paul Cargnello</b> souligne cette année ses 20 ans de carrière, 15 albums ainsi que son <b>40<sup>e</sup> anniversaire</b> de naissance. Pour toutes ces occasions, Paul Cargnello lance <b><i>Promises</i></b>, un album au son unique qui reflète tout le talent de l’artiste, son originalité et la beauté de sa marginalité.</p>
+                                    <p>L’artiste montréalais <b>Paul Cargnello</b> souligne cette année ses <b>20 ans de carrière</b>, <b>15 albums</b> ainsi que son <b>40<sup>e</sup> anniversaire</b> de naissance. Pour toutes ces occasions, Paul Cargnello lance <b><i>Promises</i></b>, un album au son unique qui reflète tout le talent de l’artiste, son originalité et la beauté de sa marginalité.</p>
                                     <p>On connaît le type. Paul est un artiste multi-instrumentiste prolifique, déterminé et ne fait rien comme les autres. Paul s’est enfermé une partie de l’année dans son studio pour écrire, composer et réaliser ce 15<sup>e</sup> album, le plus significatif de sa carrière.</p>
                                     <p>Un album anglophone de 10 titres, qui représente l’accomplissement de toutes ces années d’expérience, de curiosité, de passion et de complicités musicales. Il produit, signe les textes, la composition, la réalisation et joue TOUS les instruments de l’album. En anglais cette fois, parce que Paul sentait cet appel de travailler dans la langue et celles des idoles qui ont bercé son adolescence. Il allie le rock, pop, funk-rétro, disco et électro, qui en résulte un son unique, légèrement en marge, tout comme son auteur-compositeur.</p>
                                     <p>On y retrouve quelques collaborations dont la chanteuse soul <b>Aiza</b> sur la pièce <i>Nothing But Another Day</i>, <b>Mello G</b> & <b>Shash’U</b> sur Trouble ainsi que <b>Karma Atchykah</b>, <b>Narcy</b> & <b>Sereni-T</b> sur la pièce <i>Dead</i>.</p>
@@ -252,17 +268,18 @@
                                     <p>Au mois de février dernier, Paul présentait la pièce titre de cet album, un hommage à ses premières influences David Bowie et Prince. Fier de ses deux langues, Paul nous a offert une version anglophone et francophone de <b><i>Promises</i></b>. Pour la version francophone, il a fait appel au talent de <b>Samuele</b> pour la co-écriture des textes.</p>
                                     <p>Avec tout près de <b>50 000 vues</b>, le <b>vidéoclip <i>Promises</i></b> connaît un succès retentissant. Pour cette vidéo, Paul s’est entouré d’artistes réputés. Il a confié la réalisation à <b>Nik Brovkin</b> (Over the Breaks), la chorégraphie à <b>Toshiro Kamara</b> (Le1f,Miguel, J.Cole,Young Paris& Danser pour Jack White, Corneille), la mise en scène à <b>Peña León</b> et le stylisme à <b>Nadia Bunyan</b> (BLCK MSSN).</p>
                                     <hr>
-                                    <a href="https://www.youtube.com/watch?v=rSYaBThqwSQ&feature=youtu.be" target="_blank"><img src="http://mariefranceprivee.com/PaulCargnello/Promises/assets/PlayBtn.jpg" alt="Écoutez l'extrait"></a>
+                                    <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/rSYaBThqwSQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                                    <!-- <a href="https://www.youtube.com/watch?v=rSYaBThqwSQ&feature=youtu.be" target="_blank"><img src="http://mariefranceprivee.com/PaulCargnello/Promises/assets/PlayBtn.jpg" alt="Écoutez l'extrait"></a> -->
                                     <hr>
                                     <h3><b>UPPER CHINA - STUDIO PAUL CARGNELLO</b></h3>
                                     <p>Paul souligne également cette année l’ouverture officielle de son studio <b>Upper China</b>, qu’il a construit lui-même et où il fait tous ses albums. Il fait tout, de la création à l’écriture, à la composition, à la production, à l’enregistrement, à la mise en marché jusqu’au design graphique. Il a déjà produit et réalisé les artistes Jonathan Emile, Satellītes, Lakes Of Canada, Skinny Bros, Émeraude, Small Talk, Mello G, JP Couët, Ms. Holmes , Charlie Foxtrot.</p>
                                     <p>Paul est exceptionnellement fou... de son métier. Et on l’aime comme ça!</p>
                                     <hr>
                                     
-                                    <h2><b>LANCEMENT DE PROMISES<br><small>3 MAI 17H00</small><br><a href="http://leministere.ca/lancement-paul-cargnello/" target="_blank">AU MINISTÈRE</a></b></h2>
+                                    <h2 class="red"><b>LANCEMENT DE PROMISES<br><small>3 MAI 17H00</small><br><a href="http://leministere.ca/lancement-paul-cargnello/" target="_blank">AU MINISTÈRE</a></b></h2>
                                     
                                     <p class="center">
-                                        <b>6 MUSICIENS SUR SCÈNE</b><br>
+                                        <b>SIX SUR SCÈNE</b><br>
                                         Evelyne Lange - Batterie<br>
                                         James Challenger - Basse<br>
                                         David Osei-Afrifa - Clavier<br>
@@ -280,12 +297,13 @@
                                     <hr>
                                     
                                     <p class="center"> 
-                                        <b>Relations de presse : Torpille</b><br>
+                                        <b>Relations de presse</b><br>
                                         Marie-France Privée | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
                                     </p>
                                     <p class="center"><b>Promotion radio : Torpille</b><br>
                                         Jean-François Blanchet | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
-                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a>
+                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        Catherine Brunet |  579-721-3212 | <a href="mailto:info@torpille.ca">info@torpille.ca</a>
                                     </p>
                                     <p class="center"><b>Maison de disques : Quartier Général</b><br>
                                         Pierre-Luc Durand | 514-823-7120 | <a href="mailto:pld@quartiergeneral.com">pld@quartiergeneral.com</a>
