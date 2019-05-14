@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 19px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            margin-top: 20px;
+            line-height: normal;
+            }
+
+        h2 {
+            text-align: center;
+			font-size: 26px;
+            line-height: 30px;
+            }
+
+        h3 {
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #d68828;
+            text-decoration: none;
+        }
+        
+        .color {
+            color: #d68828;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#007da2" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #007da2;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/" target='_blank'><img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                    <h1><b class="color">Le Winston Band</b><br><small><b><i>Tournée estivale</i></b></small><br></h1>
+                                    <h1><b class="color">Nouveau vidéoclip</b> <br>
+                                        <small><i>Zig Zag Zydeco Zoo</i></small></h1>
+                                    <hr>
+                                    <p>Au mois de mars dernier, <b>Le Winston Band</b> présentait son deuxième album <b>Zig Zag Zydeco Zoo</b> devant une foule endiablée à l’occasion du <b>Mardi gras</b>. Une tradition que le groupe perpétue depuis maintenant 5 ans. Ce fut une soirée mémorable unique en son genre, remplie de costumes, de musique, de danse, de décors et objets loufoques, de bouffe faite maison. Un moment folklorique peu commun.</p>
+                                    <p> Pour les absents....Revoyez des images.</p>
+                                    <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/itNwMYhP2DU?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                                    <!-- <a href="https://www.youtube.com/watch?v=rSYaBThqwSQ&feature=youtu.be" target="_blank"><img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/video1.jpg" alt="Écoutez l'extrait"></a> -->
+                                    <hr>
+                                    <h1><b class="color">Un nouveau vidéoclip</b><br>
+                                        <small><i>Zoo Town Zydeco</i></small></h1>
+                                    <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/JpOZmT-TW8w?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                                    <!-- <a href="https://www.youtube.com/watch?v=JpOZmT-TW8w&feature=youtu.be" target="_blank"><img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/video2.jpg" alt="Écoutez l'extrait"></a> -->
+                                    <hr>
+                                    <h1><small>Tournée estivale Québec et Europe</small></h1>
+                                    <p class="center">1 juin - Orillia – La Clé de Midland <br>
+                                            4 juillet - Beloeil – Rendez-vous des cigales<br>
+                                            5 juillet - L’Isle-aux-Coudres – L’Auberge La Fascine<br>
+                                            11 juillet - Repentigny – Parc Charles-De Gaulle<br>
+                                            14 juillet - Québec – Festival d’été de Québec<br>
+                                            19 juillet - Metz (FRA)<br>
+                                            20 juillet - Sarreguemines – Le Terminus (FRA)<br>
+                                            21 juillet - Phalsbourg – Le Cotyledon, (FRA)<br>
+                                            24 juillet - Marseille – Le Molotov<br>
+                                            25 juillet - Forcalquier – Le K'fé Quoi! (FRA)<br>
+                                            27-28 juillet - Nyon – Paléo Festival (SUI)<br>
+                                            30 juillet - Annecy – Place de la Mairie (FRA)<br>
+                                            2 août - Kamouraska – Folk Fest du rang 4 (QC)<br>
+                                            8 août - Gaspé – Festival Musique du bout du monde (QC)<br>
+                                            10 août - Caraquet – Festival acadien de Caraquet (NB)<br>
+                                            15 août - Sainte-Anne-des-Monts – l’Auberge festive Sea Shack (QC) <br>
+                                            17 août - Carleton-sur-mer – Le Naufrageur (QC)<br>
+                                            ￼23 août - Percé – Pit Caribou (QC)<br>
+                                            24 août - Mont-Louis – La Pointe sec (QC)<br>
+                                            5 septembre - Waterloo – Maison de la culture, 1ère partie de Québec Redneck Bluegrass Project (QC)
+                                    </p>
+                                    <hr>
+                                    <h1><small>Album <i>ZIG ZAG ZYDECO ZOO</i></small></h1>
+                                    <p class="center">« Ils sont vraiment bons ! Ça sonne comme une tonne de briques...C’est de la musique qui emmène un vent de bonne humeur »<br><b class="color"><i>Sylvain Ménard – 98,5 FM</i></b></p>
+                                    <p class="center">« J’aime beaucoup l’énergie en concert du Winston Band » <br><b class="color"><i>Anne-Marie Kirouac – Gravel le matin, ICI PREMIÈRE</i></b></p>
+                                    <p class="center">« Mélangez Québec, Louisiane, cinq amis du quartier Ahuntsic et des grillons comestibles, vous obtiendrez le Winston Band. À ce style peu connu au Québec, Le Winston Band ajoute de la musique des Caraïbes et du traditionnel québécois. »<br><b class="color"><i>Léa Papineau-Robichaud – 24H</i></b></p>
+                                    <hr>
+                                    <h1><small><b class="color">Zig Zag Zydeco Zoo...</b><br><i>Ça mange quoi en hiver ?</i></small></h1>
+                                    <p>Zig Zag Zydeco Zoo c’est 14 chansons composées par Le Winston Band, qui fusionnent le rock à des influences zydeco, cajuns et canadiennes- françaises et mêlent sans complexe les cultures et les époques pour créer un son doublement « original », c’est-à-dire à la fois tourné vers les racines qu’il s’est choisies et vers une scène nationale où il se démarque. Produit par Le Winston Band et réalisé en collaboration avec Simon Walls, Zig Zag Zydeco Zoo est un grand cru bien de chez nous, celui qu’on conserve des années et qu’on sort pour n’importe quelles occasions, n’importe quel temps de l’année...surtout lors de soirées dansantes bien arrosées !</p>
+                                    <p>Le « zydeco québécois » qui le caractérise, est un mélange entre l’identité des cinq musiciens montréalais et un style dansant axé sur l’accordéon et le frottoir (zydeco), né chez les Créoles de Louisiane. Tout en se distinguant par cette influence peu représentée au Québec, Le Winston Band s’inscrit dans une lignée folk bien de chez nous et montre que sa musique a de solides fondations, soit les traditions riches et diversifiées qu’il entremêle.</p>
+                                    <p><b>Un peu d’histoire...</b><br>D'entrée de jeu, le Winston Band s’est fait connaître et apprécier surtout pour ses performances enlevantes et son énergie contagieuse. C’est en 2013, après six mois passés en Louisiane pour perfectionner son jeu, que l’accordéoniste Antoine Larocque s’entoure de trois grands “chums” ahuntsicois (Vincent Filion à la guitare, Antoine Fallu à la basse électrique et Andrew Duquette-Boyte au frottoir) et que le groupe voit le jour. En 2015, le batteur Gregory Fitzgerald vient compléter et enrichir le quintet.</p>
+                                    <p>Parmi les réalisations du band, on compte un premier EP (Canajun, 2014), un premier album complet (Rembobine, 2015) puis un second EP (Bolton Boogie, 2016). Après une première tournée européenne à l'automne 2017, les musiciens entrent au Studio Sophronik pour enregistrer leur deuxième album, Zig Zag Zydeco Zoo. Parallèlement à cela, Le Winston Band organise, depuis 2014, la célébration annuelle du Mardi Gras à Montréal, une grande fête musicale carnavalesque qui attire de plus en plus de curieux.</p>
+                                    <p>Le Winston Band a jusqu’ici promené sa musique aux quatre coins du Québec, mais également en France, en Belgique, en Suisse, au Nouveau- Brunswick, en Ontario, aux Territoires du Nord-Ouest et aux Îles-de-la-Madeleine . À ce jour, la formation compte plus de 300 spectacles à son actif.</p>
+                                    <hr>   
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                        <a href='https://www.lewinstonband.com' target='_blank' >www.lewinstonband.com</a>
+                                        <a href="https://www.facebook.com/LeWinstonBand/" target="_blank"> <img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/facebook.png" height="25px" alt="Facebook" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                        <a href="https://www.instagram.com/lewinstonband/" target="_blank"> <img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/instagram.png" height="25px" alt="Instagram" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                   </h3>
+                                   <hr>
+                                <p style="text-align: center;"> 
+                                    <b>Relations de presse</b><br>
+                                    <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie-france@torpille.ca">marie-france@torpille.ca</a>
+                                </p>
+                                <p style="text-align: center;"> 
+                                    <b>Promotion radio</b><br>
+                                    <b>Jean-François Blanchet</b> | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
+                                    <b>Joanick Tétreault</b> | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a>
+                                </p>
+                                <p style="text-align: center;"> 
+                                    <b>Gérance et spectacles</b><br>
+                                    <b>Guillaume Ruel</b> | 514-887-7835 | <a href="mailto:ruelgui@gmail.com">ruelgui@gmail.com</a>
+                                </p>
+                                <hr> 
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/LeWinstonBand/TourneeEstivale/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: white;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
