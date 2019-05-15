@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 18px;
+            text-align: justify;
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: normal;
+            color: #12519a;
+            margin-top: 20px;
+            line-height: normal;
+            }
+
+        h2 {
+            margin: 0px 0px 20px 0px;
+            text-align: center;
+            color: #12519a;
+            line-height:normal; 
+            font-size: normal;
+            font-weight: normal;
+            }
+
+        h3 {
+            width: 100%;
+            text-align: center;
+			font-size: 25px;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #12519a;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body width="100%" bgcolor="#f2f1ec" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f2f1ec;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/MarjolaineMorasse/VideoclipPrintemps/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <img src="http://mariefranceprivee.com/MarjolaineMorasse/VideoclipPrintemps/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; line-height:20px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    
+                                    <h1>MARJOLAINE MORASSE <br>
+                                    <b><small>Nouveau vidéoclip</small><br><i>J'accueillerai le printemps</i></b></h1>
+
+                                    <hr>
+                                    <p>L’auteure-compositrice-interprète <b>Marjolaine Morasse</b> dévoile le vidéoclip de la pièce <b><i>J'accueillerai le printemps</i></b>.</p>
+                                    <p>Ce montage visuel est la signature de l’illustrateur <b>Mathieu Potvin</b> (Urbania, KINJACKIN). Plus de 300 heures de travail pour un résultat sublime, à l’image de la douce et talentueuse <b>Marjolaine Morasse</b>. Histoire de délinquance post-rupture sur fond incendiaire, le vidéoclip célèbre la fin de l’amour au profit d’un retour à soi, avec une explosion de force et decouleurs.</p>
+
+                                    <hr>
+                                    <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/tcwD5OmrpSQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                                    <!-- <a href="http://mariefranceprivee.com/MarjolaineMorasse/VideoclipPrintemps/" target="_blank"><img src="http://mariefranceprivee.com/MarjolaineMorasse/VideoclipPrintemps/assets/video.jpg" alt="Écoutez l'extrait"></a> -->
+
+                                    <hr>
+                                    <p><b><i>J'accueillerai le printemps</i></b> a été lancée en radio ce printemps et fait de belles apparitions dans les palmarès à travers la province. Avec <b>Fred Boudreault</b> à la réalisation, ses fidèles complices <b>Fred Labrie</b> à la guitare et <b>Élie Dupuis</b> au piano, auxquels s'ajoute la voix de <b>Geneviève Jodoin</b> aux choeurs et <b>Alexis Martin</b> à la batterie, <b>Marjolaine Morasse</b> propose un son pop-folk parfaitement sucré et authentique, juste à temps pour célébrer l’arrivée du beau temps !</p>
+                                    <p>C’est en janvier 2018 que nous avons eu le plaisir de découvrir <b>Marjolaine Morasse</b> avec son tout premier EP <b><i>Chanson de laine</i></b>, qui fut par ailleurs fort salué par la critique. Empreint de lumière, de nostalgie heureuse et de grands vents, l’univers musical de Marjolaine Morasse se trouve à mi-chemin entre la chaleur de la laine et la rugosité des cœurs brisés. La forêt et les grands espaces qui l'ont vu grandir teintent sa pop à l'essence folk, savoureusement sensible et enveloppante avec quelques notes bien festives. Textes raffinés sur dentelle musicale, les chansons de Marjolaine parlent d'amour, de ses tourments, de la beauté elle-même qui se cache en chaque petite chose. Après une tournée 2018 un peu partout au Québec, elle est actuellement en mode créatif à l’École nationale de la Chansons, en préparation de son premier album complet, prévu mi 2020.</p>
+
+                                    <hr>
+                                    <h2><b><i>EN SPECTACLE</i></b></h2>
+                                    <p class="center">15 au 20 mai – Festival de la chanson – Le Tremplin de Dégelis<br>
+                                        30 mai - Bistro Coeur de village de St-Isidore<br>
+                                        11 juin : Auditorium du Cégep de Granby <br> avec les finissants de l'École nationale de la chanson<br>
+                                        12 juin : Théâtre Petit-Champlain de Québec <br> avec les finissants de l'École nationale de la chanson<br>
+                                        14 juin : L’Astral, dans le cadre des Francos de Montréal <br> avec les finissants de l'École nationale de la chanson<br>
+                                    </p>
+                                    
+                                    
+                                    <hr>
+                                    <p style="text-align: center;"> 
+                                        <b>Relations de presse :</b><br>
+                                        <b>Marie-France Privée</b> | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p style="text-align: center;"> 
+                                        <b>Promotion radio : Torpille</b><br>
+                                        <b>Jean-François Blanchet</b> | 450-787-3141 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a><br>
+                                        <b>Joanick Tétreault</b> | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        <b>Catherine Brunet</b> | 579-721-3212 | <a href="mailto:catherine@torpille.ca">catherine@torpille.ca</a>
+                                    </p>
+                                    <p style="text-align: center;"> 
+                                        <b>Production de spectacles : Quartier Général</b><br>
+                                        <b>Pierre-Luc Durand</b> | 514-823-7120 | <a href="mailto:pld@quartiergeneral.com">pld@quartiergeneral.com</a>
+                                    </p>
+                                    <hr>
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                        <a href='http://www.marjolainemorasse.com/' target='_blank' >marjolainemorasse.com </a>  
+                                        <a href="https://itunes.apple.com/ca/artist/marjolaine-morasse/1308437071" target="blank"> <img src="http://mariefranceprivee.com/MarjolaineMorasse/PlaceDesArts/assets/itunes.png" height="25px" alt="iTunes" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                        <a href="https://open.spotify.com/artist/5DjFqqAgxFV47vjrnGaiLW" target="blank"> <img src="http://mariefranceprivee.com/MarjolaineMorasse/PlaceDesArts/assets/spotify.png" height="25px" alt="Spotify" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                        <a href="https://www.facebook.com/marjolainemorassemusique/" target="blank"><img src="http://mariefranceprivee.com/MarjolaineMorasse/PlaceDesArts/assets/facebook.png" height="25px" alt="Facebook" style="vertical-align:middle; padding:0px 5px;"></a>
+                                        <a href="https://www.instagram.com/marjolainemorasse/" target="blank"> <img src="http://mariefranceprivee.com/MarjolaineMorasse/PlaceDesArts/assets/instagram.png" height="25px" alt="Instagram" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                        <a href="https://www.youtube.com/marjolainemorasse" target="blank"> <img src="http://mariefranceprivee.com/MarjolaineMorasse/PlaceDesArts/assets/youtube.png" height="25px" alt="YouTube" style="vertical-align:middle; padding:0px 5px;"> </a>
+                                   </h3>
+                                        
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="padding-top: 20px; text-align:center;">
+                        <img src="http://mariefranceprivee.com/MarjolaineMorasse/VideoclipPrintemps/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #888888;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
