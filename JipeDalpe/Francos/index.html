@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+        }
+        b {
+            color: #73775d;
+        }
+        .center  {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            color: #5b5e4b;
+            margin: 20px 0px 10px 0px;
+            line-height: normal;
+            }
+
+        h2 {
+            color: #8c878b;
+            margin: 0px 0px 30px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 20px;
+            font-weight: normal;
+            }
+
+        h3 {color: #8c878b;
+            font-size: 20px;
+            font-weight: normal;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #666666;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #8c878b;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #5b5e4b;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#47483a" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #47483a;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/JipeDalpe/Francos/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#000000">
+                        <a href="http://mariefranceprivee.com/JipeDalpe/Francos/" target="_blank"><img src="http://mariefranceprivee.com/JipeDalpe/Francos/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#000000">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #dddddd;">                                    
+                                    <h1>JIPÉ DALPÉ</h1>
+                                    <h2><b><i>APRÈS LE CRASH</i></b> <br> <small>SALUÉ PAR LA CRITIQUE</small> </h2>
+                                    <hr>
+                                    <p class="center"><b>En spectacle aux Francos de Montréal</b> <br><i>20 juin 19h – Scène Bell</i></p>
+                                    
+                                    <hr>
+                                    <p>C’est devant une salle pleine à craquer, remplie de fans, d’artistes, d’amis et collborateurs que l’auteur- compositeur-interprète et multi-instrumentiste Jipé Dalpé lançait son nouvel album Après le crash le 15 avril dernier au Ministère. Dans l’ambiance euphorique d’une perfo live électrique, urgente, rock, mais également touchante, tous étaient réunis pour célébrer ce 3e album du chanteur-trompettiste qui soulignait à la fois son retour en force ainsi que le début d’une nouvelle étape.</p>
+                                    
+                                    <hr>
+                                    <p class="center"><b><i>INSÉRER VIDÉOS DU LANCEMENT</i></b></p>
+                                    <!-- <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/tcwD5OmrpSQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div> -->
+                                    <!-- <a href="http://mariefranceprivee.com/JipeDalpe/Francos/" target="_blank"><img src="http://mariefranceprivee.com/JipeDalpe/Francos/assets/video.jpg" alt="Écoutez l'extrait"></a> -->
+                                    
+                                    <hr>
+                                    <p>Pour ce 3e album, le chanteur-trompettiste s’est entouré de collaborateurs de premier ordre, à commencer par Jean-François Lemieux qui assure la réalisation. Ariane Moffatt coréalise 3 pièces en plus de signer la musique de 2 chansons, dont une où elle marie magnifiquement sa voix à celle de Jipé (Combien d’étoiles). On y retrouve également comme complices Marie-Pierre Arthur, Olivier Langevin, François Lafontaine, Pierre Fortin et David Goudreault. Plus rock, direct et incisif que ses disques précédents, tout en gardant ce qu’il faut de subtilité et sensibilité, les 11 pièces nous catapultent dans l’univers singulier de l’artiste, où ses mots, sa trompette et ses arrangements de cuivres font résonner tout le talent et l’originalité de l’artiste. Après son crash, Jipé nous livre un album chargé d’émotions, un électro- choc de sincérité et de résilience où les textes et le climat musical reflètent indéniablement un tournant majeur dans sa vie.</p>
+                                    
+                                    <hr>
+                                    <h3><b>SPECTACLES</b></h3>
+                                    <p><b>20 juin – Montréal</b> - FRANCOS de Montréal 19h - Scène Bell <br>
+                                        <b>4 juillet – Petite-Vallée</b> - Plateau double avec Marc Déry au Festival de la chanson de Petite-Vallée <br>
+                                        <b>10 juillet – Sherbrooke</b> - Concerts de la Cité<br>
+                                        <b>19 juillet – Isle-aux-Coudres</b> - La Fascine<br>
+                                        <b>20 mars – Lavaltrie</b> - Café culturel de la Chasse-Galerie<br>
+                                        <p><i>D’autres dates seront à venir...</i></p>
+                                    </p>
+                                    
+                                    <hr>
+                                    <p class="center"> 
+                                        <b>Relations de presse</b><br>
+                                        Marie-France Privée | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p class="center"><b>Promotion radio : Torpille</b><br>
+                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        Catherine Brunet | 579-721-3212 | <a href="mailto:catherine@torpille.ca">catherine@torpille.ca </a><br>
+                                        Jean-François Blanchet | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Gérance</b><br>
+                                        Sébastien Charest | 514-248-8979 | <a href="mailto:sebcharest@gmail.com">sebcharest@gmail.com</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Spectacles : Groupe Artifice</b><br>
+                                        Gus Boilard | 418-255-8487 | <a href="mailto:gus@artifice.live">gus@artifice.live</a>
+                                    </p>
+
+                                
+                                    
+                                    
+                                    <hr>                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #ffffff;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
