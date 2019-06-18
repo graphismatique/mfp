@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 20px;
+            text-align: justify;
+            
+        }
+        .center  {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            font-size: 23px;
+            margin: 20px 0px 15px 0px;
+            line-height: normal;
+            font-family: sans-serif;
+            }
+
+        h2 {margin: 0px 0px 20px 0px;
+            font-weight: normal;
+            font-size: 19px;
+            }
+
+        h3 {
+            text-align: center;
+            line-height:normal; 
+            font-size: 18px;
+            font-family: sans-serif; font-weight: bold;
+            
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #226e9c;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        
+        .blue {
+            color: #226e9c;
+        }
+        a {
+            text-decoration: none;
+            color: #226e9c;
+            
+        }
+        a:hover {
+            color: #c84cc4;
+        }  
+        .photo {
+            width: 100%;
+        }
+       
+    </style>
+</head>
+<body width="100%" bgcolor="#e7f1fb" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #e7f1fb;">
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
+        <!-- Visually Hidden Preheader Text : END -->
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <!-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="outside small"><a href="http://mariefranceprivee.com/LaCourseDesTuques/BandeAnnonce/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table> -->
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/Mercuriades/" target="blank"><img src="http://mariefranceprivee.com/Mercuriades/assets/header.jpg" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: serif; font-size: 15px; color: #555555;">                                    
+                                        
+                                    <!--    MARKDOWN START HERE   -->
+                                    <hr>
+                                    <h1>BLÜ DOG MÉDIA<br>
+                                        <small>PRIX SOCAN POUR L’EXTRAIT «&nbsp;POUR COMMENCER&nbsp;»</small></h1>
+                                    <h2>PIÈCE TITRE DU FILM <i>LA COURSE DES TUQUES</i></h2>
+                                    <hr>
+                                    <p>C’est avec grande fierté que <b>Blü Dog Média</b> reçoit le <b>prix SOCAN</b> pour l’extrait <b>« Pour commencer »</b>, pièce titre du film <i>La Course des tuques</i>.</p>
+                                    <p>Interprétée par <b>Alex Nevsky</b> et composée par le duo <b>Fred St-Gelais</b> et <b>Nelson Minville</b>, la pièce <b>« Pour commencer »</b> a été au sommet du palmarès radio Top 100 BDS. Une belle victoire pour la jeune entreprise. <b>Blü Dog Média</b> remercie <b>Musicor</b> et tous les collaborateurs qui ont aidé à faire de cette chanson un succès.</p>
+                                    <img class="photo" src="assets/photo.jpg" alt="Photo">
+                                    <p><b>Blü Dog Média</b> est en effet une jeune entreprise de productions sonores cinématographiques et télévisuelles, d’éditions, de développement d’artistes et de gérance, créée en 2018 par <b>Nancy Brault</b> (vice-présidente) et <b>Marie-Claude Beauchamp</b> (présidente de Blü Dog Média et CarpeDiem Film&TV inc.).</p>
+                                    <p><b>Blü Dog Média</b> a produit la bande sonore du film <b><i>La Course des tuques/Snowtime</i></b> et travaillé de concert avec les producteurs du film (CARPEDIEM FILM&TV) à la sélection des artistes ainsi que l’équipe de Musicor pour la mise en marché. L’entreprise a veillé aux productions des deux bandes sonores, soient celle pour le film francophone et anglophone. <b>Blü Dog Média</b> a également coordonné et produit tous les EPK d’artistes et vidéoclips des chansons du films (francophone et anglophone). Dans les deux versions, l’équipe a réussi à dénicher des artistes de renoms tels que <b>Cyndi Lauper, Alex Nevsky, Dumas, Ludovick Bourgeois, Garou, Corneille</b> et a obtenu une licence exclusive du <b>groupe U2</b> qui a accepté que le groupe <b>Cool Kids</b> reprennent la chanson <i>It’s a Beautiful Day</i>.</p>
+                                    <p><b>Blü Dog Média</b> est également fière d’avoir mis au monde un groupe unique au Québec, les <b>Cool kids</b>, six jeunes talents âgés de 13 à 16 ans: <b>Camélia, Félicia, Gabrielle, Keren, William</b> et <b>Zion-Luna</b>. <b>Blü Dog Média</b> a ainsi produit le tout premier mini-album, les vidéoclips et les spectacles, en collaboration avec Musicor. En plus de la production, <b>Blü Dog Média</b> assure la gérance du groupe et obtient des opportunités uniques pour que celui-ci puisse rayonner et faire voyager leur musique.</p>
+                                    <p><b>Blü Dog Média</b> produit parallèlement la musique de la série dérivée du film <b>Les mini-tuques/Snowsnaps</b> qui est en ondes sur Télétoon, La chaîne Disney et TreeHouse ainsi que la musique pour une expérience virtuelle 5D unique, présenté exclusivement au Musée Grévin à l’hiver 2019.</p>
+                                    <p>L’équipe travaille également au développement de la carrière de <b>Josh Alexander</b>, jeune auteur-compositeur-interprète prometteur. L’entreprise agit en tant que producteur et gérance de l’artiste. Ce n’est qu’un début...</p>
+                                    <hr>
+                                    <h3><a href="https://www.bludogmedia.ca" target="_blank">www.bludogmedia.ca</a></h3>
+                                    <hr>
+                                    <br>
+                                    <p class="center">Source : Blü Dog Média <br>Marie-France Privée | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a> | 514-814-7844</p>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Logo Footer : BEGIN -->
+                <tr>
+                    <td style="text-align:center;">
+                        <img src="http://mariefranceprivee.com/Mercuriades/assets/footer.png" alt="Logos Footer" border="0" align="center" style="width: 100%; max-width: 600px; height: auto;" class="g-img">
+                    </td>
+                </tr>
+                <!-- Logo Footer : END -->
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
