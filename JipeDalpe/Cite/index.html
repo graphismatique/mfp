@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+        }
+       
+        .center  {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        b {
+            color: #73775d;
+            }
+        h1 {
+            text-align: center;
+            color: #5b5e4b;
+            margin: 20px 0px 10px 0px;
+            line-height: normal;
+            font-size: 40px;
+            }
+
+        h2 {
+            color: #ffffff;
+            margin: 0px 0px 30px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 22px;
+            font-weight: normal;
+            }
+
+        h3 {
+            font-size: 23px;
+            font-weight: normal;
+            line-height: 30px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #666666;
+			height: 1px;
+            margin: 5px 0px 10px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #8c878b;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #5b5e4b;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+        }
+        
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#47483a" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #47483a;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/JipeDalpe/Cite/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#000000">
+                        <a href="http://mariefranceprivee.com/JipeDalpe/Cite/" target="_blank"><img src="http://mariefranceprivee.com/JipeDalpe/Cite/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#000000">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #dddddd;">                                    
+                                    <h1>JIPÉ DALPÉ</h1>
+                                    <h2><b>EN SPECTACLE AUX CONCERTS DE LA CITÉ</b><br><small><i>10 JUILLET 12H15 – PLACE DE LA CITÉ</i></small></h2>
+                                    <hr>
+                                    <p>L’auteur-compositeur-interprète et multi-instrumentiste <b>Jipé Dalpé</b> sera en spectacle le <b>10 juillet</b> dans le cadre des <b>Concerts de la Cité</b> à Sherbrooke. Rappelons qu’à l’été 2015, il devait présenter son spectacle à Sherbrooke dans le même contexte, mais malheureusement, un grave accident d’auto l’avait obligé à annuler. Le concert du <b>10 juillet</b> prendra donc un sens tout particulier pour l’artiste puisqu’il aura l’occasion de reprendre là où il avait dû laisser avec le public de sa ville natale, si cher à son cœur.</p>
+                                    <p>Enfin remis sur pieds et en pleine possession de ses moyens, le chanteur trompettiste est de retour en force avec un tout nouveau spectacle qui a du punch et du nerf! Plus rock, direct et incisif que ses concerts précédents, tout en gardant ce qu’il faut de subtilité et sensibilité. La trompette de <b>Jipé Dalpé</b> occupera comme d’habitude une place de choix.</p>
+                                    <p>C’est devant une salle pleine à craquer, remplie de fans, d’artistes, d’amis et collaborateurs que <b>Jipé Dalpé</b> lançait <b><i>Après le crash</i></b> le 15 avril dernier. Son talent, sa passion et son histoire ont trouvé écho auprès du public et des médias. <b><i>Après le crash</i></b> est l’album le plus significatif et abouti de <b>Jipé</b>. À son plus grand bonheur, l’album fut unanimement acclamé par la critique.</p>
+                                    <hr>
+                                    <p class="center"><b><i>Après le crash</i></b> est l’album le plus significatif et abouti de <b>Jipé</b>. À son plus grand bonheur, l’album fut unanimement acclamé par la critique.</p>
+                                    <p class="center">«Un album très beau, très vivant, très fort, très plein de rage de vivre »<br><b>- Monique Giroux, ICI Musique</b></p>
+                                    <p class="center">«Album puissamment parlant, où tout compte au centuple: textes, mélodies, arrangements, collaborations (...) La musique de Jipé Dalpé vivra, et lui aussi, en même temps »<br><b>- Sylvain Cormier, Le Devoir</b></p>
+                                    <p class="center">«Un album tout à fait troublant et intéressant (...) Bien travaillé, bien écrit, un album à contenu. J’insiste. Vraiment un bon disque»<br><b>- Sylvain Ménard, 98,5 FM</b></p>
+                                    <p class="center">«Jipé a retrouvé l’avidité d’exister dans nos oreilles. Avec panache, à part ça»<br><b>- Alexandre Vigneault, La Presse</b></p>
+                                    <p class="center">«Y’a une aura vraiment forte autour de cet album-là (...) Portez une oreille attentive à cet album»<br><b>- Seb Lozon, Rouge FM Québec</b></p>
+                                    <p class="center">«Un registre rock pop raffiné (...) Excellent trompettiste (...) Le revoici bien en selle»<br><b>- Olivier Robilllard Laveaux, ICI Musique</b></p>
+                                    <p class="center">«Un si magnifique album»<br><b>- Thérèse Parisien, 98,5 FM</b></p>
+                                    <p class="center">«Mélodieux, avec une urgence de dire, de vivre, de faire des chansons»<br><b>- Evelyne Charuest, ICI Radio-Canada Première</b></p>
+                                    <p class="center">«Un album riche au niveau des textes et musicalement aussi»<br><b>- Anne-Marie Kirouac, ICI Radio-Canada Première</b></p>
+                                    <p class="center">«Après quelques écoutes, pas de doute que l’album se retrouvera dans nos coups de cœur francophones en fin d’année»<br><b>- Francois Valenti, Caissedeson.com</b></p>
+                                    <p class="center">«Jamais Jipé Dalpé ne s’est autant révélé que dans Après le crash»<br><b>- Dominic Tardif, Paroles & Musique</b></p>
+                                    <p class="center">«Une pop plus rock percutante et significative.» (...) De la pop vigoureuse funkalicious qui creuse hors des sentiers battus»<br><b>- Jocelyn Legault, ARP.Media</b></p>
+                                    <p class="center">«Y’a une énergie qui se dégage de cet album, j’aime beaucoup(...) Une voix tellement puissante»<br><b>- Jessica Lebbe, CKRL 89,1 FM</b></p>
+                                    <hr>
+                                    <p>Pour ce 3<sup>e</sup> album, le chanteur-trompettiste s’est entouré de collaborateurs de premier ordre, à commencer par <b>Jean-François Lemieux</b> qui assure la réalisation. <b>Ariane Moffatt</b> coréalise 3 pièces en plus de signer la musique de 2 chansons, dont une où elle marie magnifiquement sa voix à celle de Jipé (<i>Combien d’étoiles</i>). On y retrouve également comme complices <b>Marie-Pierre Arthur, Olivier Langevin, François Lafontaine, Pierre Fortin</b> et <b>David Goudreault</b>. Plus rock, direct et incisif que ses disques précédents, tout en gardant ce qu’il faut de subtilité et sensibilité, les 11 pièces nous catapultent dans l’univers singulier de l’artiste, où ses mots, sa trompette et ses arrangements de cuivres font résonner tout le talent et l’originalité de l’artiste. Après son crash, Jipé nous livre un album chargé d’émotions, un électro- choc de sincérité et de résilience où les textes et le climat musical reflètent indéniablement un tournant majeur dans sa vie.</p>
+                                    <hr>
+                                    <p class="center"> 
+                                        <b>Relations de presse</b><br>
+                                        Marie-France Privée | 514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a>
+                                    </p>
+                                    <p class="center"><b>Promotion radio : Torpille</b><br>
+                                        Joanick Tétreault | 579-721-3212 | <a href="mailto:joanick@torpille.ca">joanick@torpille.ca</a><br>
+                                        Catherine Brunet | 579-721-3212 | <a href="mailto:catherine@torpille.ca">catherine@torpille.ca </a><br>
+                                        Jean-François Blanchet | 579-721-3212 | <a href="mailto:jf@torpille.ca">jf@torpille.ca</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Gérance</b><br>
+                                        Sébastien Charest | 514-248-8979 | <a href="mailto:sebcharest@gmail.com">sebcharest@gmail.com</a>
+                                    </p>
+                                    <p class="center"> 
+                                        <b>Spectacles : Groupe Artifice</b><br>
+                                        Gus Boilard | 418-255-8487 | <a href="mailto:gus@artifice.live">gus@artifice.live</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #ffffff;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
