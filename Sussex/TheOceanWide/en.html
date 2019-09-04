@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+        }
+        
+        .center  {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        .color {
+            color: #1763a0;
+        }
+        h1 {
+            text-align: center;
+            color: #1763a0;
+            margin: 0px 0px 0px 0px;
+            line-height: normal;
+            font-size:44px;
+            }
+
+        h2 {
+            color: #696969;
+            margin: 5px 0px 0px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 20px;
+            
+            }
+
+        h3 {color: #696969;
+            margin: 15px 0px 0px 0px;
+            font-weight: normal;
+            text-align: left;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #467881;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 10px 0px 15px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #1763a0;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #eae34a;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        sup {
+        font-size: 0.83em;
+        vertical-align: super;
+        line-height: 0;
+    };
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#1d1d1d" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #1d1d1d;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/Sussex/TheOceanWide/" target="blank">Online Version</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/Sussex/TheOceanWide/" target="_blank"><img src="http://mariefranceprivee.com/Sussex/TheOceanWide/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #303030;">                                    
+                                    
+                                    <a href="index.html"> ➝ Version française ici</a>
+                                    <hr>
+                                    
+                                    
+                                    <h1>SUSSEX</h1>
+                                    <h2>invites you to cross</h2>
+                                    <h1><small><i>The Ocean Wide</i></small></h1>
+                                    <hr>
+                                    <p>Featuring renowned songwriter and performer Rob Lutes, with vibraphonist Michael Emenau, the genre-defying Montreal roots project, <b><i>Sussex</i></b>, unveils its new album, suitably titled, <b><i>The Ocean Wide</i></b>.</p>
+                                    <p>Following the success of the group's first record, <i>Parade Day</i> (2016), and extensive touring, <i>Sussex</i> is back with a second album that will transport you to an equally extraordinary and singular musical universe.</p>
+                                    <p>With Emenau on vibraphone and pianica and Lutes on guitar, banjo, and vocals, <i>The Ocean Wide</i> is an eclectic, exhilarating journey — at times joyful, at times melancholy — that takes us improbably right to the very heart of American roots music.</p>
+                                    <p>Featuring special guests Ivanhoe Jolicoeur on trumpet and flugelhorn, and Bruno Lamarche on clarinet and saxophone, and recorded and mixed by renowned Montreal engineer Rob Heaney (Cirque du Soleil, Patrick Watson), <i>The Ocean Wide</i> features 13 new original songs, and a superb reinterpretation of Steve Goodman's gem, “Lookin’ for Trouble.”</p>
+                                    <p>"When Michael and I made <i>Parade Day</i>, we looked at it as a well needed break in our busy musical schedules. We were just having fun playing together after many years, and we loved the blend of vibes and guitar. But the album did so well that we ended up being picked up by a great agency in Montreal and touring it pretty extensively. We had so much fun tweaking the sound and bringing new tunes to the show and the audience reaction was so off the charts, we felt a momentum to get back into the studio and make a second album. This time, we stepped outside any normal musical boundaries we had had and just tried stuff. A slide guitar/pianica minor blues (Train #7). Some bebop horns and vibes over a guitar and banjo-driven folk tune (The Ocean Wide).</p>
+                                    <p>Some nods to Tin Pan Alley and Leonard Cohen and Ragtime and Dixieland. And some cool folk roots tunes that found a home in this album's particular sound. The beauty of Sussex for Michael and me is that we can take the music wherever it needs to go. There are no stylistic limits. This outing is quite different from the first, a little more intimate with just us and Ivan and Bruno on horns, but a little broader musically. A little more adventurous. Michael's got a whole new palette of sounds on his vibes and this band has pushed my playing to lots of new places on guitar and banjo. This music does not represent a logical step anywhere. It's pure in that way. Just music. And that's a lot of fun."</p>
+
+                                    <hr>
+                                    <h3 class="color">MUSICIANS</h3>
+                                    <p>Rob Lutes - guitar, banjo, vocals <br>
+                                        Michael Emenau - vibraphone, pianica, percussion <br>
+                                        <b>Special guests:</b><br>
+                                        Ivanhoe Jolicoeur - trumpet, flugelhorn <br>
+                                        Bruno Lamarche - clarinet, saxophone</p>
+                                    
+                                    <hr>
+                                    <h3 class="color">ABOUT SUSSEX</h3>
+                                    <p>Sussex is the brainchild of Michael Emenau and Rob Lutes. The two renowned musicians were childhood friends and high school bandmates in New Brunswick. After graduation, they went their separate ways — Michael to Tokyo, San Francisco and Paris, where he made a name for himself as a world-class jazz vibraphonist and composer; Lutes to Montreal, where he has recorded six albums and earned a reputation as one of Canada’s finest songwriters and roots performers.</p>
+                                    <p>Reunited in 2012, the pair began to write together for the first time in 20 years. Encouraged by the results, they decided to make a record. Enlisting the services of some of Montreal’s finest players, including guitarist Benoit Charest (Les Triplettes de Belleville), violinist Josh Zubot (Patrick Watson), bassist Sage Reynolds (Jordan Officer) and trumpeter Ivanhoé Jolicoeur (Les Cowboys Fringants), they went into the legendary Studio Frisson in Montreal in Fall 2014 and Winter 2015 and recorded their debut album <i>Parade Day</i>. The Ocean Wide is their second album.</p>
+
+                                    <hr>
+                                    
+                                    <div class="videoContainer"><iframe class="video" src="https://www.youtube.com/embed/2RWbWYxTb4c?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></div>
+                                    <!-- <a href="http://mariefranceprivee.com/Sussex/TheOceanWide/" target="_blank"><img src="http://mariefranceprivee.com/Sussex/TheOceanWide/assets/PlayBtn.jpg" alt="Écoutez l'extrait"></a> -->
+                                    
+                                    
+
+                                    <hr>
+
+                                    
+                                    <h3 style="text-align: center; vertical-align:middle;"> 
+                                        <a href='http://www.sussexvibrafolk.com' target='_blank'><b>WWW.SUSSEXVIBRAFOLK.COM</b></a>
+                                   </h3>
+                                    <hr>
+                                    
+                                    <p class="center"> 
+                                        <b>Publicity Booking</b><br>
+                                        Kimberly Sinclair | 902-350-3968 | <a href="mailto:kimberly@spincount.com">kimberly@spincount.com</a>
+                                    </p>
+                                    <p class="center">
+                                        Noemie Azoulay | Agence Resonances | 514-521-4445 | <a href="mailto:info@agenceresonances.com">info@agenceresonances.com</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; line-height:14px; text-align: center; color: #ffffff;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
