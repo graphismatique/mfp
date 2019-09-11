@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+            margin : 0px 0px 15px 0px;
+        }
+        
+        .center  {
+            text-align: center;   
+        }
+        .spectacles {
+            text-align: center;
+            line-height: 19px;
+            margin: 10px 0px;
+        }
+        .left {
+            text-align: left;
+        }
+        .color{
+            color: #0983b4;
+        }
+        h1 {
+            text-align: center;
+            color: #0983b4;
+            margin: 0px 0px 20px 0px;
+            line-height: normal;
+            font-size:55px;
+            }
+
+        h2 {
+            color: #696969;
+            margin: 30px 0px 10px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 19px;
+            font-weight: lighter;
+            }
+
+        h3 {color: #696969;
+            margin: 15px 0px 0px 0px;
+            font-weight: normal;
+            text-align: center;
+            font-size: 20px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #0983b4;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 10px 0px 15px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        a {
+            color: #0983b4;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #1763a0;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        sup {
+        font-size: 0.7em;
+        vertical-align: super;
+        line-height: 0;
+    };
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#e2eff0" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #e2eff0;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/MathieuLippe/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/MathieuLippe/" target="_blank"><img src="http://mariefranceprivee.com/MathieuLippe/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; line-height:20px; color: #303030;">
+                                    <h2>PRÉSENTÉ PAR :</h2>
+                                    <h1>Mathieu Lippé</h1>
+                                    <hr>
+                                    <p>Le 9 septembre 2019 – Tout juste avant de partir pour la France en tournée de spectacles et en tant que co-parrain d’honneur du <b>Festival Sémaphore en Chanson</b>, l’artiste slammeur-auteur-compositeur et interprète <b>Mathieu Lippé</b> offre son spectacle solo <b><i>Voyageuse Parole</i></b> à <b>Montréal</b> le <b>5 octobre</b> prochain dans l’intimité du <b>Théâtre Paul Buissonneau</b> situé au cœur du Parc La&nbsp;Fontaine.</p>
+                                    <p>Avec <b><i>Voyageuse Parole</i></b>, Mathieu Lippé performe avec un savant <b>mélange de slams, de contes, de poésies, de chansons et d’humour</b>. Entre récits de vie et récits de voyages imaginaires, il offre un florilège spontané de ses meilleurs textes avec son art naturel de la parole et la ferveur qu’on lui connaît.</p>
+                                    <p>Il partage les péripéties de colorés personnages qui prennent la route en quête de sens. Un spectacle tantôt drôle tantôt touchant, rempli d’espoir et d’humanisme. Tout en étant un hommage à la beauté de la langue française et à la nature qui nous entoure, il s’agit aussi d’un élan vers la splendeur de vivre&#8239;!</p>
+                                    <p>Deux ans après le lancement de son 3<sup>ième</sup> album <b><i>Les Amants de l’Aube</i></b>, plusieurs extraits radios et plus d’une centaine de spectacles et d’ateliers d’écriture, le parolier bohémien est en création pour un prochain album.</p>
+                                    <br>
+                                    <hr>
+                                    <h3 class="color"><b>SPECTACLES & CONFÉRENCES...</b></h3>
+                                    <hr>
+                                    <p class="spectacles"><b>8 septembre</b><br>Festival des Arts de la Ruelle, Montréal</p>
+                                    <p class="spectacles"><b>18 septembre</b><br>Sommet Québécois du Leadership Conscient, Montréal</p>
+                                    <p class="spectacles"><b>21 septembre</b><br>2<sup>ième</sup> Congrès International sur l’intégration des thérapies, Montréal</p>
+                                    <p class="spectacles"><b>5 octobre</b><br>Voyageuse Parole, Salle Paul Buissonneau, Montréal</p>
+                                    <p class="spectacles"><b>18-20 octobre</b><br>L’Ère des Solutions, conférence immersive avec Solution Era, Sherbrooke</p>
+                                    <p class="spectacles"><b>26 octobre</b><br>« Forêt y voir », avec Sandra Allaire conférence-spectacle, Nicolet</p>
+                                    <p class="spectacles"><b>5 au 8 novembre</b><br>Festival Sémaphore en Chanson, Cébazat, FRANCE</p>
+                                    <p class="spectacles"><b>12 novembre</b><br>Voyageuse Parole, Foulayronnes, FRANCE</p>
+                                    <p class="spectacles"><b>13 novembre</b><br>Voyageuse Parole, 1ière partie Marc Lavoine, Cébazat, FRANCE</p>
+                                    <p class="spectacles"><b>14 novembre</b><br>Conférence-Spectacle, Théâtre du Sphinx, Nantes, FRANCE</p>
+                                    <p class="spectacles"><b>22-24 novembre</b><br>L’Ère des Solutions, conférence immersive avec Solution Era, Montréal</p>
+                                    <p class="spectacles"><b>29 novembre au 1<sup>er</sup> déc</b><br>L’Ère des Solutions, conférence immersive avec Solution Era, Québec</p>
+                                    <br>
+                                    <hr>                                    
+                                    <h3 style="vertical-align:middle;"> 
+                                        <a href='http://mathieulippe.com' target='_blank'><b>WWW.MATHIEULIPPE.COM</b></a>
+                                   </h3>
+                                    <hr>
+                                    <br>
+                                    <p class="center"><b>RELATIONS DE PRESSE</b> | MARIE-FRANCE PRIVÉE<br>514-814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; text-align: center; color: #333333;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
