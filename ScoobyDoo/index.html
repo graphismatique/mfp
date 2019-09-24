@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What is does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: A work-around for iOS meddling in triggered links. */
+        *[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+
+        /* What it does: A work-around for Gmail meddling in triggered links. */
+        .x-gmail-data-detectors,
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+
+        p {
+            line-height: 21px;
+            text-align: justify;
+            font-size: 15px;
+            margin : 0px 0px 15px 0px;
+        }
+        
+        .center  {
+            text-align: center;   
+        }
+        .spectacles {
+            text-align: center;
+            line-height: 19px;
+            margin: 10px 0px;
+        }
+        .left {
+            text-align: left;
+        }
+        .color{
+            color: #77318c;
+        }
+        h1 {
+            text-align: center;
+            color: #77318c;
+            margin: 0px 0px 20px 0px;
+            line-height: normal;
+            font-size:35px;
+            }
+
+        h2 {
+            color: #696969;
+            margin: 30px 0px 10px 0px;
+            text-align: center;
+            line-height:normal; 
+            font-size: 19px;
+            font-weight: lighter;
+            }
+
+        h3 {color: #696969;
+            margin: 15px 0px 0px 0px;
+            font-weight: lighter;
+            text-align: center;
+            font-size: 20px;
+		}
+        h4 {
+			margin: 0px 0px 0px 0px;
+			font-weight: 100;
+			font-size: 20px;
+            color: #0983b4;
+            line-height: 20px;
+		}
+        hr {
+			border: 0;
+			background-color: #f2f1ec;
+			height: 1px;
+            margin: 10px 0px 15px 0px;
+		}
+       
+        .small { 
+            font-size: 10px;
+            text-align: center;
+        }
+        .big { 
+            text-align: center;
+            font-size: 17px;
+            line-height: 22px;
+        }
+        a {
+            color: #77318c;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #8277b6;
+        }
+        .videoContainer {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        .video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .photo{
+            width: 100%; 
+            max-width: 513px;
+        }
+        sup {
+        font-size: 0.7em;
+        vertical-align: super;
+        line-height: 0;
+    };
+        
+    </style>
+</head>
+<body width="100%" bgcolor="#f9efda" style="margin: 0; mso-line-height-rule: exactly;">
+    <center style="width: 100%; background: #f9efda;">
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+            2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+        -->
+        <div style="max-width: 600px; margin: auto;" class="email-container">
+            <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+            
+            <!-- Online Version : BEGIN  -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                         <p class="small"><a href="http://mariefranceprivee.com/ScoobyDoo/" target="blank">Version en ligne</a></p>
+                    </td>
+                </tr>
+            </table>
+            <!-- Online Version : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+                
+                <!-- Image Header : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <a href="http://mariefranceprivee.com/ScoobyDoo/" target="_blank"><img src="http://mariefranceprivee.com/ScoobyDoo/assets/header.jpg" alt="header image" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img"></a>
+                    </td>
+                </tr>
+                <!-- Image Header : END -->
+
+                <!-- Main Text on 1 Column : BEGIN -->
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                            <tr>
+                                <td style="text-align: center; padding: 0px 40px 20px 40px; font-family: sans-serif; font-size: 15px; color: #303030;">
+                                    <h2>L’entreprise montréalaise <b>Monlove</b> en collaboration avec <b>Warner Bros</b>, annonce le spectacle musical</h2>
+                                    <h1>SCOOBY-DOO ET LA LÉGENDE DE L’ELDORADO <br> 
+                                        <small><i>SCOOBY-DOO AND THE<br>LOST CITY OF GOLD</i></small>
+                                    </h1>
+                                    <hr>
+                                    <h3>LA TOURNÉE MONDIALE DÉBUTERA EN MARS 2020</h3>
+                                    <hr>
+                                    <br>
+                                    <p>Pour souligner le <b>50<sup>e</sup> anniversaire</b> du mythique personnage <b>Scooby-Doo</b>, <b>MONLOVE</b> en collaboration avec <b>WARNER BROS</b>, annonce la production d’un spectacle musical à grand déploiement, inspiré d’une des plus grandes franchises de tous les temps.</p>
+                                    <p><b><i>Scooby-Doo et La légende de l’Eldorado (Scooby-Doo and The Lost City Of Gold)</i></b> sera présenté dès le mois de mars 2020 à l’échelle mondiale, dans plus de 30 pays. Le spectacle s’arrêtera bien entendu à Montréal. Les dates seront annoncées prochainement.</p>
+                                    <p>Fièrement conçu à Montréal, dans les studios de <b>MONLOVE, <i>Scooby-Doo and The Lost City Of Gold</i></b> mise sur le divertissement et l’avant-garde. Pour la toute première fois sur scène, on réunit technologie de pointe, musique, marionnettes, arts du cirque, magie, chant, danse, arts aériens et vidéos interactifs. 14 artisans sur scène en plus d’une équipe chevronnée de techniciens et opérateurs pour nous faire vivre un spectacle unique et mémorable.</p>
+                                    <hr>
+                                    <img class="photo" src="http://mariefranceprivee.com/ScoobyDoo/assets/photo1.jpg" alt="Photo 50e anniversaire de Scooby-Doo à Los Angeles">
+                                    <hr>
+                                    
+                                    <p>Les producteurs de <b>MONLOVE</b> étaient présents le 13 septembre dernier à Los Angeles pour souligner le <b>50<sup>e</sup> anniversaire de Scooby-Doo</b>. Ils ont eu l’occasion de dévoiler pour la toute première fois le personnage habité Scooby-Doo du populaire danois, confectionné à Montréal par des artisans d’ici. Ils en ont profité également pour lancer en grande pompe cette toute nouvelle production scénique.</p>
+
+
+
+                                    <hr>
+                                    <h3 class="color"><b>MONLOVE RAYONNE À L’INTERNATIONAL</b></h3>
+                                    <hr>
+                                    
+                                    <img class="photo" src="http://mariefranceprivee.com/ScoobyDoo/assets/photo2.jpg" alt="PHOTOS DE MONLOVE RAYONNE À L’INTERNATIONAL">
+                                    <hr>
+                                    <p>Fondée et dirigée par <b>Ella Louise Allaire</b> et <b>Martin Lord Ferguson</b>, <b>MONLOVE</b> est une société de production montréalaise spécialisée dans le développement de contenu créatif depuis 2005. <b>MONLOVE</b> est reconnue pour ses créations scéniques à grand déploiement du grand écran à la scène, son atelier spectaculaire de marionnettes & créatures et son studio de production cinématographique et musicale à la fine pointe des technologies.</p>
+                                    
+                                    
+
+                                    <p><b>MONLOVE</b> a notamment mené sur scène <b>Opération noisette et amis</b> (The Nut Job Live & Friends), <b>Venus of Paris</b> et <b>L’Âge de glace</b> (Ice Age Live! A Mammoth Adventure) qui a par ailleurs parcouru 48 pays et a été traduit en 12 langues.</p>
+                                    
+                                    <br>
+                                    <hr>
+                                    <p class="big center"><i>« Nous livrons des projets ''clé en main'' à un auditoire en quête d’expériences uniques et d’histoires mémorables.<br>Le crédo de l’entreprise est d’innover avec des idées qui portent un message d'amour et d'espoir pour l’humanité ».</i><br><b>Ella et Martin</b></p>
+                                    <hr>
+                                    <br>
+
+                                    <p><b>MONLOVE</b> est réalisateur, compositeur de musique, parolier, pour plusieurs spectacles notamment pour le <b>Cirque du Soleil</b> ainsi que pour les spectacles et trames sonores de <b>KÀ</b>, <b>Zed</b>, <b>Mystere</b>, <b>Alegria</b> et <b>Saltimbanco</b>.</p>
+
+                                    <hr>                                    
+                                    
+                                    <br>
+                                    <p class="center"><b>INFORMATIONS</b><br>Marie-France Privée | 514 814-7844 | <a href="mailto:marie@mariefranceprivee.com">marie@mariefranceprivee.com</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;">
+                <tr>
+                    <td style="padding: 20px 0px;width: 100%;font-size: 12px; font-family: sans-serif; text-align: center; color: #333333;" class="x-gmail-data-detectors">
+                        <unsubscribe class="desinscrire">
+                            <p class="small">
+                            Si vous ne voulez plus recevoir de courriel de notre part, <br>
+                           <a href="mailto:marie@mariefranceprivee.com">cliquez ici</a> pour vous désabonner.
+                           </p>
+                        </unsubscribe>
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Footer : END -->
+
+            <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </div>
+    </center>
+</body>
+</html>
